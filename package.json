@@ -1,0 +1,42 @@
+{
+  "name": "o-homem-que-calculava",
+  "version": "1.0.0",
+  "description": "Jogo educativo baseado no livro O Homem que Calculava de Malba Tahan",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server . -p 8080 -c-1 -o",
+    "dev": "npx http-server . -p 8080 -c-1 -o --cors",
+    "serve": "http-server . -p 8080"
+  },
+  "keywords": [
+    "game",
+    "educational",
+    "math",
+    "phaser",
+    "javascript",
+    "malba-tahan",
+    "beremiz"
+  ],
+  "author": "Desenvolvedor Educacional",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seu-usuario/o-homem-que-calculava.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seu-usuario/o-homem-que-calculava/issues"
+  },
+  "homepage": "https://github.com/seu-usuario/o-homem-que-calculava#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

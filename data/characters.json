@@ -1,0 +1,68 @@
+{
+  "characters": [
+    {
+      "name": "Hassan",
+      "title": "O Narrador",
+      "description": "Companheiro de viagem de Beremiz e narrador das aventuras. Testemunha os feitos matemáticos extraordinários de seu amigo.",
+      "avatar": "hassan_portrait.png",
+      "personality": "Curioso, leal e admirado com a sabedoria de Beremiz",
+      "role": "narrator"
+    },
+    {
+      "name": "Beremiz",
+      "title": "O Homem que Calculava",
+      "description": "Beremiz Samir, natural de Khoi na Pérsia, possui habilidades matemáticas extraordinárias e usa seus conhecimentos para resolver problemas complexos.",
+      "avatar": "beremiz_portrait.png",
+      "personality": "Sábio, generoso, engenhoso e apaixonado pela matemática",
+      "role": "protagonist"
+    },
+    {
+      "name": "Califa",
+      "title": "Governante de Bagdá",
+      "description": "Poderoso governante que reconhece e recompensa a sabedoria matemática de Beremiz.",
+      "avatar": "califa_portrait.png",
+      "personality": "Justo, poderoso e apreciador do conhecimento",
+      "role": "authority"
+    },
+    {
+      "name": "Mercador",
+      "title": "Comerciante",
+      "description": "Comerciante que frequentemente apresenta problemas matemáticos relacionados a suas atividades comerciais.",
+      "avatar": "mercador_portrait.png",
+      "personality": "Pragmático, esperto e sempre em busca de soluções eficientes",
+      "role": "merchant"
+    },
+    {
+      "name": "Sábio",
+      "title": "Estudioso",
+      "description": "Eruditos e matemáticos que desafiam Beremiz com problemas complexos para testar sua sabedoria.",
+      "avatar": "sabio_portrait.png",
+      "personality": "Intelectual, desafiador e respeitoso com o conhecimento verdadeiro",
+      "role": "challenger"
+    },
+    {
+      "name": "Viajante1",
+      "title": "Primeiro Viajante",
+      "description": "Viajante que encontra Beremiz e Hassan durante suas jornadas pelo deserto.",
+      "avatar": "viajante1_portrait.png",
+      "personality": "Hospitaleiro, generoso e grato pela ajuda recebida",
+      "role": "traveler"
+    },
+    {
+      "name": "Viajante2",
+      "title": "Segundo Viajante",
+      "description": "Companheiro de viagem que também se beneficia da sabedoria de Beremiz.",
+      "avatar": "viajante2_portrait.png",
+      "personality": "Amigável, colaborativo e impressionado com as soluções matemáticas",
+      "role": "traveler"
+    },
+    {
+      "name": "Poeta",
+      "title": "Criador de Versos",
+      "description": "Artista que cria poemas para o Califa e se envolve em situações que requerem cálculos matemáticos.",
+      "avatar": "poeta_portrait.png",
+      "personality": "Criativo, eloquente e surpreendido com as aplicações da matemática na arte",
+      "role": "artist"
+    }
+  ]
+}

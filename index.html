@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Homem que Calculava - Aventuras de Beremiz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2c1810;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #game-container {
+            border: 3px solid #8b4513;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
+        }
+
+        canvas {
+            display: block;
+        }
+
+        .loading {
+            color: #d4af37;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="loading" class="loading">Carregando O Homem que Calculava...</div>
+    </div>
+
+    <!-- Phaser.js CDN - using stable version -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+
+    <!-- Global game configuration - must be loaded first -->
+    <script>
+        const GameConfig = {
+            WIDTH: 1024,
+            HEIGHT: 768,
+            COLORS: {
+                PRIMARY: 0x8b4513,      // Saddle brown
+                SECONDARY: 0xd4af37,    // Gold
+                BACKGROUND: 0x2c1810,   // Dark brown
+                TEXT: 0xffffff,         // White
+                ACCENT: 0xff6b35        // Orange
+            },
+            FONTS: {
+                TITLE: { fontSize: '32px', fill: '#d4af37', fontFamily: 'Arial, serif' },
+                DIALOGUE: { fontSize: '18px', fill: '#ffffff', fontFamily: 'Arial, sans-serif' },
+                BUTTON: { fontSize: '16px', fill: '#ffffff', fontFamily: 'Arial, sans-serif' },
+                QUESTION: { fontSize: '20px', fill: '#d4af37', fontFamily: 'Arial, sans-serif' }
+            },
+            ANIMATIONS: {
+                FADE_DURATION: 500,
+                TEXT_SPEED: 50,
+                BUTTON_HOVER_SCALE: 1.1
+            }
+        };
+    </script>
+
+    <!-- Game Systems -->
+    <script src="systems/DialogueSystem.js"></script>
+    <script src="systems/QuestionSystem.js"></script>
+    <script src="systems/AnimationSystem.js"></script>
+
+    <!-- Game Scenes -->
+    <script src="src/scenes/IntroScene.js"></script>
+    <script src="src/scenes/StoryScene.js"></script>
+    <script src="src/scenes/QuestionScene.js"></script>
+    <script src="src/scenes/ResultScene.js"></script>
+
+    <!-- Main Game Files -->
+    <script src="src/game.js"></script>
+    <script src="src/main-fixed.js"></script>
+</body>
+</html>

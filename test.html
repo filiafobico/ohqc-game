@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug O Homem que Calculava</title>
+</head>
+<body>
+    <div id="debug">Carregando...</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+
+    <script>
+        document.getElementById('debug').innerHTML = 'Phaser loaded: ' + (typeof Phaser !== 'undefined');
+    </script>
+
+    <script>
+        const GameConfig = {
+            WIDTH: 800,
+            HEIGHT: 600,
+            COLORS: {
+                PRIMARY: 0x8b4513,
+                SECONDARY: 0xd4af37,
+                BACKGROUND: 0x2c1810,
+                TEXT: 0xffffff,
+                ACCENT: 0xff6b35
+            },
+            FONTS: {
+                TITLE: { fontSize: '32px', fill: '#d4af37', fontFamily: 'Arial, serif' },
+                DIALOGUE: { fontSize: '18px', fill: '#ffffff', fontFamily: 'Arial, sans-serif' },
+                BUTTON: { fontSize: '16px', fill: '#ffffff', fontFamily: 'Arial, sans-serif' },
+                QUESTION: { fontSize: '20px', fill: '#d4af37', fontFamily: 'Arial, sans-serif' }
+            },
+            ANIMATIONS: {
+                FADE_DURATION: 500,
+                TEXT_SPEED: 50,
+                BUTTON_HOVER_SCALE: 1.1
+            }
+        };
+
+        document.getElementById('debug').innerHTML += '<br>GameConfig loaded: ' + (typeof GameConfig !== 'undefined');
+    </script>
+
+    <script>
+        class TestScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'TestScene' });
+            }
+
+            create() {
+                this.add.text(400, 300, 'O Homem que Calculava', {
+                    fontSize: '32px',
+                    fill: '#d4af37'
+                }).setOrigin(0.5);
+
+                this.add.text(400, 350, 'Teste funcionando!', {
+                    fontSize: '24px',
+                    fill: '#ffffff'
+                }).setOrigin(0.5);
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            backgroundColor: 0x2c1810,
+            scene: TestScene,
+            parent: 'debug'
+        };
+
+        const game = new Phaser.Game(config);
+        document.getElementById('debug').innerHTML = 'Jogo iniciado!';
+    </script>
+</body>
+</html>

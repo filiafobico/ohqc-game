@@ -1,0 +1,149 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "title": "Os 35 camelos",
+      "background": "desert",
+      "characters": ["Hassan", "Beremiz"],
+      "story": [
+        "Três irmãos discutem a herança de 35 camelos.",
+        "O primeiro deveria receber metade.",
+        "O segundo um terço.",
+        "O terceiro um nono.",
+        "Mas como dividir 35 camelos exatamente?"
+      ],
+      "question": "Como Beremiz resolveu a divisão dos camelos?",
+      "options": [
+        "17, 11, 7 camelos",
+        "18, 12, 4 camelos",
+        "20, 10, 5 camelos",
+        "Não é possível dividir"
+      ],
+      "correctIndex": 1,
+      "explanation": [
+        "Beremiz empresta um de nossos camelos.",
+        "Agora existem 36 camelos para dividir.",
+        "Metade de 36 = 18 camelos",
+        "Um terço de 36 = 12 camelos",
+        "Um nono de 36 = 4 camelos",
+        "Total distribuído: 18 + 12 + 4 = 34 camelos",
+        "Sobram 2 camelos: devolvemos o emprestado e ficamos com 1!"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "As pérolas do mercador",
+      "background": "market",
+      "characters": ["Mercador", "Beremiz"],
+      "story": [
+        "Um mercador possui 60 pérolas.",
+        "Quer dividir igualmente entre seus 4 filhos.",
+        "Mas também quer dar 5 pérolas para a mesquita.",
+        "Quantas pérolas cada filho receberá?"
+      ],
+      "question": "Quantas pérolas cada filho receberá?",
+      "options": [
+        "15 pérolas cada",
+        "13 pérolas cada",
+        "14 pérolas cada",
+        "12 pérolas cada"
+      ],
+      "correctIndex": 1,
+      "explanation": [
+        "Total de pérolas: 60",
+        "Pérolas para a mesquita: 5",
+        "Pérolas restantes: 60 - 5 = 55",
+        "Dividindo entre 4 filhos: 55 ÷ 4 = 13 pérolas cada",
+        "Sobra: 55 - (13 × 4) = 55 - 52 = 3 pérolas"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Os 5 pães dos viajantes",
+      "background": "desert",
+      "characters": ["Viajante1", "Viajante2", "Beremiz"],
+      "story": [
+        "Dois viajantes encontram Beremiz no deserto.",
+        "O primeiro possui 3 pães, o segundo possui 2 pães.",
+        "Os três compartilham igualmente os 5 pães.",
+        "Um terceiro viajante aparece e paga 5 moedas pelos pães.",
+        "Como dividir as moedas justamente?"
+      ],
+      "question": "Como dividir as 5 moedas entre os donos dos pães?",
+      "options": [
+        "3 moedas para o primeiro, 2 para o segundo",
+        "4 moedas para o primeiro, 1 para o segundo",
+        "2,5 moedas para cada",
+        "Dividir igualmente entre todos"
+      ],
+      "correctIndex": 1,
+      "explanation": [
+        "Cada pessoa comeu 5÷3 = 5/3 de pão",
+        "O primeiro contribuiu: 3 - 5/3 = 9/3 - 5/3 = 4/3 de pão",
+        "O segundo contribuiu: 2 - 5/3 = 6/3 - 5/3 = 1/3 de pão",
+        "Proporção: 4/3 : 1/3 = 4:1",
+        "Primeiro recebe: 4 moedas, segundo recebe: 1 moeda"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "O pagamento do poeta",
+      "background": "palace",
+      "characters": ["Califa", "Poeta", "Beremiz"],
+      "story": [
+        "Um poeta criou um poema de 30 versos para o Califa.",
+        "O Califa oferece: 1 dinar pelo primeiro verso,",
+        "2 dinares pelo segundo, 4 pelo terceiro,",
+        "dobrando sempre o valor.",
+        "Qual será o pagamento total?"
+      ],
+      "question": "Quanto o poeta receberá pelos 30 versos?",
+      "options": [
+        "1.073.741.823 dinares",
+        "536.870.911 dinares",
+        "1.048.575 dinares",
+        "2.147.483.647 dinares"
+      ],
+      "correctIndex": 0,
+      "explanation": [
+        "Esta é uma progressão geométrica: 1, 2, 4, 8, 16...",
+        "Cada termo é: 2^(n-1), onde n é o número do verso",
+        "Soma de progressão geométrica: S = a₁(2ⁿ - 1)/(2 - 1)",
+        "S = 1(2³⁰ - 1)/1 = 2³⁰ - 1",
+        "2³⁰ = 1.073.741.824",
+        "Total: 1.073.741.824 - 1 = 1.073.741.823 dinares"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "O problema das escravas",
+      "background": "market",
+      "characters": ["Mercador", "Beremiz"],
+      "story": [
+        "Um mercador possui algumas escravas.",
+        "Se as colocar em grupos de 3, sobram 2.",
+        "Em grupos de 5, sobram 3.",
+        "Em grupos de 7, sobram 2.",
+        "Qual o menor número de escravas?"
+      ],
+      "question": "Qual é o menor número de escravas?",
+      "options": [
+        "23",
+        "37",
+        "53",
+        "67"
+      ],
+      "correctIndex": 0,
+      "explanation": [
+        "Precisamos encontrar n tal que:",
+        "n ≡ 2 (mod 3)",
+        "n ≡ 3 (mod 5)",
+        "n ≡ 2 (mod 7)",
+        "Testando valores: 23 satisfaz todas as condições:",
+        "23 = 3×7 + 2 (resto 2)",
+        "23 = 5×4 + 3 (resto 3)",
+        "23 = 7×3 + 2 (resto 2)"
+      ]
+    }
+  ]
+}
