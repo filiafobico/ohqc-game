@@ -24,22 +24,13 @@ class DialogueSystem {
         this.dialogueBox.strokeRoundedRect(50, height - 250, width - 100, 180, 15);
         this.dialogueBox.setVisible(false);
 
-        // Character portrait background
-        this.portraitBg = this.scene.add.graphics();
-        this.portraitBg.fillStyle(GameConfig.COLORS.PRIMARY, 0.9);
-        this.portraitBg.lineStyle(2, GameConfig.COLORS.SECONDARY);
-        this.portraitBg.fillRoundedRect(70, height - 230, 120, 120, 10);
-        this.portraitBg.strokeRoundedRect(70, height - 230, 120, 120, 10);
-        this.portraitBg.setVisible(false);
-
-        // Character portrait (placeholder)
-        this.portrait = this.scene.add.graphics();
-        this.setCharacterPortrait('hassan')
+        // Character portrait (will be set dynamically)
+        this.portrait = null;
 
         // Character name text
         this.nameText = this.scene.add.text(210, height - 230, '', {
             fontSize: '20px',
-            fill: GameConfig.COLORS.SECONDARY,
+            fill: '#d4af37', // Golden color for better contrast on dark background
             fontFamily: 'Arial, serif',
             fontStyle: 'bold'
         });
@@ -100,8 +91,14 @@ class DialogueSystem {
         this.onComplete = onComplete;
         this.isDisplaying = true;
 
+        // First prepare the current dialogue (creates portrait)
+        this.prepareCurrentDialogue();
+
+        // Then show the UI
         this.showDialogueUI();
-        this.displayCurrentDialogue();
+
+        // Finally display the dialogue content
+        this.displayCurrentDialogueContent();
     }
 
     // Set character portrait with real images
@@ -126,8 +123,8 @@ class DialogueSystem {
         try {
             // Try to load real character image
             this.portrait = this.scene.add.image(130, height - 170, portraitKey);
-            this.portrait.setDisplaySize(100, 100);
-            this.portrait.setVisible(false);
+            this.portrait.setDisplaySize(140, 140);
+            this.portrait.setVisible(this.isDisplaying);
 
             // Check if image loaded successfully
             if (this.portrait.texture.key === '__MISSING') {
@@ -143,8 +140,8 @@ class DialogueSystem {
             this.portrait = this.scene.add.graphics();
             const color = this.getCharacterColor(characterName);
             this.portrait.fillStyle(color, 0.8);
-            this.portrait.fillCircle(130, height - 170, 50);
-            this.portrait.setVisible(false);
+            this.portrait.fillCircle(130, height - 170, 70);
+            this.portrait.setVisible(this.isDisplaying);
         }
     }
 
@@ -193,7 +190,6 @@ class DialogueSystem {
     // Show dialogue UI elements
     showDialogueUI() {
         this.dialogueBox.setVisible(true);
-        this.portraitBg.setVisible(true);
 
         if (this.portrait) {
             this.portrait.setVisible(true);
@@ -206,8 +202,7 @@ class DialogueSystem {
         this.continueButton.setVisible(true);
         this.continueButtonText.setVisible(true);
 
-        // Fade in animation
-        const targets = [this.dialogueBox, this.portraitBg, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText];
+        const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText];
         if (this.portrait) targets.push(this.portrait);
 
         this.scene.tweens.add({
@@ -220,7 +215,7 @@ class DialogueSystem {
 
     // Hide dialogue UI elements
     hideDialogueUI() {
-        const targets = [this.dialogueBox, this.portraitBg, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText];
+        const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText];
         if (this.portrait) targets.push(this.portrait);
 
         this.scene.tweens.add({
@@ -230,7 +225,6 @@ class DialogueSystem {
             ease: 'Power2',
             onComplete: () => {
                 this.dialogueBox.setVisible(false);
-                this.portraitBg.setVisible(false);
                 if (this.portrait) this.portrait.setVisible(false);
                 this.nameText.setVisible(false);
                 this.dialogueText.setVisible(false);
@@ -240,8 +234,20 @@ class DialogueSystem {
         });
     }
 
-    // Display current dialogue
-    displayCurrentDialogue() {
+    // Prepare current dialogue (create portrait without showing content yet)
+    prepareCurrentDialogue() {
+        if (this.currentDialogueIndex >= this.dialogues.length) {
+            return;
+        }
+
+        const dialogue = this.dialogues[this.currentDialogueIndex];
+
+        // Update portrait first
+        this.updatePortrait(dialogue.character);
+    }
+
+    // Display current dialogue content
+    displayCurrentDialogueContent() {
         if (this.currentDialogueIndex >= this.dialogues.length) {
             this.endDialogue();
             return;
@@ -254,9 +260,6 @@ class DialogueSystem {
 
         // Animate text appearance
         this.animateText(dialogue.text);
-
-        // Update portrait (placeholder color based on character)
-        this.updatePortrait(dialogue.character);
     }
 
     // Animate text typing effect
@@ -278,29 +281,26 @@ class DialogueSystem {
         });
     }
 
-    // Update character portrait (placeholder implementation)
+    // Update character portrait based on current dialogue
     updatePortrait(character) {
-        // Different colors for different characters
-        let color = GameConfig.COLORS.ACCENT;
-        switch(character?.toLowerCase()) {
-            case 'hassan':
-                color = 0x4169E1; // Royal blue
-                break;
-            case 'beremiz':
-                color = 0x32CD32; // Lime green
-                break;
-            case 'califa':
-                color = 0xFF4500; // Orange red
-                break;
-            default:
-                color = GameConfig.COLORS.ACCENT;
+        if (character) {
+            this.setCharacterPortrait(character);
+            // Ensure portrait is visible after creation
+            if (this.portrait && this.isDisplaying) {
+                this.portrait.setVisible(true);
+            }
         }
     }
 
     // Move to next dialogue
     nextDialogue() {
         this.currentDialogueIndex++;
-        this.displayCurrentDialogue();
+
+        // Prepare the new dialogue (creates portrait)
+        this.prepareCurrentDialogue();
+
+        // Display the content
+        this.displayCurrentDialogueContent();
     }
 
     // End dialogue sequence
@@ -318,7 +318,6 @@ class DialogueSystem {
     // Cleanup
     destroy() {
         if (this.dialogueBox) this.dialogueBox.destroy();
-        if (this.portraitBg) this.portraitBg.destroy();
         if (this.portrait) this.portrait.destroy();
         if (this.nameText) this.nameText.destroy();
         if (this.dialogueText) this.dialogueText.destroy();

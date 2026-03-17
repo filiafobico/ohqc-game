@@ -67,8 +67,7 @@ class CalculavaGame {
 
         } catch (error) {
             console.error('Erro ao carregar dados do jogo:', error);
-            // Return fallback data if loading fails
-            return this.getFallbackData();
+
         }
     }
 
@@ -103,54 +102,5 @@ class CalculavaGame {
     // Reset game to beginning
     reset() {
         this.currentLevel = 1;
-    }
-
-    // Get fallback data if JSON files fail to load
-    getFallbackData() {
-        return {
-            levels: [{
-                id: 1,
-                title: "Os 35 camelos",
-                background: "desert",
-                characters: ["Hassan", "Beremiz"],
-                story: [
-                    "Três irmãos discutem a herança de 35 camelos.",
-                    "O primeiro deveria receber metade.",
-                    "O segundo um terço.",
-                    "O terceiro um nono."
-                ],
-                question: "Como dividir os camelos?",
-                options: [
-                    "17, 11, 7",
-                    "18, 12, 4",
-                    "20, 10, 5",
-                    "Não é possível dividir"
-                ],
-                correctIndex: 1,
-                explanation: [
-                    "Beremiz empresta um camelo.",
-                    "Agora existem 36 camelos.",
-                    "Metade = 18",
-                    "1/3 = 12",
-                    "1/9 = 4",
-                    "Total = 34 camelos distribuídos!",
-                    "Sobra 1 camelo que retorna ao dono."
-                ]
-            }],
-            characters: [
-                {
-                    name: "Hassan",
-                    title: "O Narrador",
-                    description: "Companheiro de viagem de Beremiz",
-                    avatar: "hassan_portrait.png"
-                },
-                {
-                    name: "Beremiz",
-                    title: "O Homem que Calculava",
-                    description: "Gênio da matemática",
-                    avatar: "beremiz_portrait.png"
-                }
-            ]
-        };
     }
 }
