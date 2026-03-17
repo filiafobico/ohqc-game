@@ -41,22 +41,6 @@
       "role": "challenger"
     },
     {
-      "name": "Viajante1",
-      "title": "Primeiro Viajante",
-      "description": "Viajante que encontra Beremiz e Hassan durante suas jornadas pelo deserto.",
-      "avatar": "viajante1_portrait.png",
-      "personality": "Hospitaleiro, generoso e grato pela ajuda recebida",
-      "role": "traveler"
-    },
-    {
-      "name": "Viajante2",
-      "title": "Segundo Viajante",
-      "description": "Companheiro de viagem que também se beneficia da sabedoria de Beremiz.",
-      "avatar": "viajante2_portrait.png",
-      "personality": "Amigável, colaborativo e impressionado com as soluções matemáticas",
-      "role": "traveler"
-    },
-    {
       "name": "Poeta",
       "title": "Criador de Versos",
       "description": "Artista que cria poemas para o Califa e se envolve em situações que requerem cálculos matemáticos.",

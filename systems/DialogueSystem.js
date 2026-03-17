@@ -189,8 +189,6 @@ class DialogueSystem {
             'califa': 'califa-portrait',
             'poeta': 'poeta-portrait',
             'sabio': 'sabio-portrait',
-            'viajante1': 'viajante1-portrait',
-            'viajante2': 'viajante2-portrait'
         };
 
         const normalizedName = characterName.toLowerCase();
@@ -215,8 +213,6 @@ class DialogueSystem {
             'califa': 0x9932CC,     // Dark orchid
             'poeta': 0xDC143C,      // Crimson
             'sabio': 0x8B4513,      // Saddle brown
-            'viajante1': 0x2F4F4F,  // Dark slate gray
-            'viajante2': 0x800080   // Purple
         };
         const normalizedName = characterName.toLowerCase();
         return colorMap[normalizedName] || GameConfig.COLORS.ACCENT;

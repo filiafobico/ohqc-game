@@ -15,12 +15,13 @@ class IntroScene extends Phaser.Scene {
         this.load.image('califa-portrait', 'assets/califa_portrait.png');
         this.load.image('poeta-portrait', 'assets/poeta_portrait.png');
         this.load.image('sabio-portrait', 'assets/sabio_portrait.png');
-        this.load.image('viajante1-portrait', 'assets/viajante1_portrait.png');
-        this.load.image('viajante2-portrait', 'assets/viajante2_portrait.png');
 
         // Load background images
-        this.load.image('desert-caravan', 'assets/desert-caravan.png');
-        this.load.image('bagda-market', 'assets/bagda-market.png');
+        this.load.image('level_1_bg', 'assets/level_1_bg.png');
+        this.load.image('level_2_bg', 'assets/level_2_bg.png');
+        this.load.image('level_3_bg', 'assets/level_3_bg.png');
+        this.load.image('level_4_bg', 'assets/level_4_bg.png');
+        this.load.image('level_5_bg', 'assets/level_5_bg.png');
 
         // Load result background images
         this.load.image('success', 'assets/success.png');

@@ -3,8 +3,8 @@
     {
       "id": 1,
       "title": "Os 35 camelos",
-      "background": "desert",
-      "backgroundImage": "desert-caravan",
+      "background": "level_1_bg",
+      "backgroundImage": "level_1_bg",
       "characters": ["Hassan", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "Beremiz, encontramos três irmãos discutindo no deserto." },
@@ -37,8 +37,8 @@
     {
       "id": 2,
       "title": "As pérolas do mercador",
-      "background": "market",
-      "backgroundImage": "bagda-market",
+      "background": "level_2_bg",
+      "backgroundImage": "level_2_bg",
       "characters": ["Mercador", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "No mercado de Bagdá, um mercador nos procurou." },
@@ -66,9 +66,9 @@
     {
       "id": 3,
       "title": "Os 5 pães dos viajantes",
-      "background": "desert",
-      "backgroundImage": "desert-caravan",
-      "characters": ["Viajante1", "Viajante2", "Beremiz"],
+      "background": "level_3_bg",
+      "backgroundImage": "level_3_bg",
+      "characters": ["Hassan", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "Dois viajantes famintos nos encontram no deserto." },
         { "character": "Hassan", "text": "O primeiro viajante trouxe 3 pães." },
@@ -99,8 +99,8 @@
     {
       "id": 4,
       "title": "O pagamento do poeta",
-      "background": "palace",
-      "backgroundImage": "bagda-market",
+      "background": "level_4_bg",
+      "backgroundImage": "level_4_bg",
       "characters": ["Califa", "Poeta", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "No palácio real, um poeta apresentou seus versos." },
@@ -131,8 +131,8 @@
     {
       "id": 5,
       "title": "O enigma das moedas de ouro",
-      "background": "market",
-      "backgroundImage": "bagda-market",
+      "background": "level_5_bg",
+      "backgroundImage": "level_5_bg",
       "characters": ["Mercador", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "Um mercador nos apresentou um enigma fascinante." },
