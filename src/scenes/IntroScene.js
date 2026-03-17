@@ -141,17 +141,6 @@ class IntroScene extends Phaser.Scene {
             Phaser.Geom.Rectangle.Contains
         );
 
-        // Button hover effects
-        startButton.on('pointerover', () => {
-            startButton.setScale(1.05);
-            startButtonText.setScale(1.05);
-        });
-
-        startButton.on('pointerout', () => {
-            startButton.setScale(1);
-            startButtonText.setScale(1);
-        });
-
         // Button click - start game
         startButton.on('pointerdown', () => {
             this.startGame();

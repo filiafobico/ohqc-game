@@ -166,17 +166,6 @@ class ResultScene extends Phaser.Scene {
             Phaser.Geom.Rectangle.Contains
         );
 
-        // Button hover effects
-        this.continueButton.on('pointerover', () => {
-            this.continueButton.setScale(1.05);
-            this.continueButtonText.setScale(1.05);
-        });
-
-        this.continueButton.on('pointerout', () => {
-            this.continueButton.setScale(1);
-            this.continueButtonText.setScale(1);
-        });
-
         // Button click
         this.continueButton.on('pointerdown', () => {
             this.proceedToNext();
