@@ -128,7 +128,6 @@ class DialogueSystem {
             this.portrait = this.scene.add.image(130, height - 170, portraitKey);
             this.portrait.setDisplaySize(100, 100);
             this.portrait.setVisible(false);
-            console.log(`🎭 Portrait carregado: ${portraitKey} para ${characterName}`);
 
             // Check if image loaded successfully
             if (this.portrait.texture.key === '__MISSING') {
@@ -146,7 +145,6 @@ class DialogueSystem {
             this.portrait.fillStyle(color, 0.8);
             this.portrait.fillCircle(130, height - 170, 50);
             this.portrait.setVisible(false);
-            console.log(`🎨 Usando fallback colorido para ${characterName}`);
         }
     }
 
@@ -199,7 +197,6 @@ class DialogueSystem {
 
         if (this.portrait) {
             this.portrait.setVisible(true);
-            console.log('🎭 Portrait visível no diálogo');
         } else {
             console.warn('⚠️ Portrait não encontrado ao mostrar UI');
         }

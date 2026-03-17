@@ -2,8 +2,6 @@
 // Initialize the game when the page loads
 
 window.addEventListener('load', () => {
-    console.log('Página carregada, aguardando inicialização...');
-
     // Wait a bit for all scripts to load
     setTimeout(() => {
         initializeGame();
@@ -11,8 +9,6 @@ window.addEventListener('load', () => {
 });
 
 function initializeGame() {
-    console.log('Iniciando O Homem que Calculava...');
-
     // Hide loading message
     const loading = document.getElementById('loading');
     if (loading) {
@@ -25,7 +21,6 @@ function initializeGame() {
         document.getElementById('game-container').innerHTML = '<div class="loading">Erro: Phaser.js não carregado</div>';
         return;
     }
-    console.log('Phaser carregado:', Phaser.VERSION);
 
     try {
         // Start the game - this will fail if classes aren't loaded
@@ -33,7 +28,6 @@ function initializeGame() {
 
         // Global reference for debugging
         window.game = game;
-        console.log('Jogo iniciado com sucesso!');
     } catch (error) {
         console.error('Erro ao iniciar o jogo:', error);
 

@@ -27,8 +27,6 @@ class StoryScene extends Phaser.Scene {
         this.createUI();
         this.setupDialogueSystem();
         this.startStory();
-
-        console.log('StoryScene criada para nível:', this.currentLevel.id);
     }
 
     // Create background based on level setting
@@ -45,7 +43,6 @@ class StoryScene extends Phaser.Scene {
             const bgImage = this.add.image(width / 2, height / 2, backgroundKey);
             bgImage.setDisplaySize(width, height);
             bgImage.setAlpha(0.7); // Semi-transparent for text readability
-            console.log(`🏜️ Imagem de fundo carregada: ${backgroundKey}`);
         } catch (error) {
             console.warn('⚠️ Fallback para background programático:', error);
 

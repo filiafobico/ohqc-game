@@ -31,9 +31,6 @@ class ResultScene extends Phaser.Scene {
         this.createUI();
         this.setupDialogueSystem();
         this.showResults();
-
-        console.log('ResultScene criada para nível:', this.currentLevel.id);
-        console.log('Resultado da questão:', this.questionResult);
     }
 
     // Create result scene background
@@ -66,7 +63,7 @@ class ResultScene extends Phaser.Scene {
                 const angle = (360 / 6) * i;
                 const x = width / 2 + Math.cos(Phaser.Math.DegToRad(angle)) * 100;
                 const y = 150 + Math.sin(Phaser.Math.DegToRad(angle)) * 50;
-                
+
                 // Draw simple diamond shape
                 decorations.strokeCircle(x, y, 15);
                 decorations.strokeCircle(x, y, 8);

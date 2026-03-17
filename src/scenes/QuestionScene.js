@@ -29,8 +29,6 @@ class QuestionScene extends Phaser.Scene {
         this.createUI();
         this.setupSystems();
         this.presentQuestion();
-
-        console.log('QuestionScene criada para nível:', this.currentLevel.id);
     }
 
     // Create question scene background
@@ -129,8 +127,6 @@ class QuestionScene extends Phaser.Scene {
             selectedAnswer: this.currentLevel.options[selectedIndex],
             correctAnswer: this.currentLevel.options[this.currentLevel.correctIndex]
         };
-
-        console.log('Resposta selecionada:', this.questionResult);
 
         // Show feedback animation
         if (isCorrect) {

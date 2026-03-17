@@ -22,8 +22,6 @@ class IntroScene extends Phaser.Scene {
         this.load.image('desert-caravan', 'assets/medieval arabian desert caravan.png');
         this.load.image('bagda-market', 'assets/Mercado medieval em Bagdá.png');
 
-        console.log('🖼️ Carregando imagens do jogo...');
-
         // Load placeholder assets as fallback
         this.loadPlaceholderAssets();
     }
@@ -40,8 +38,6 @@ class IntroScene extends Phaser.Scene {
 
         // Load game data
         this.loadGameData();
-
-        console.log('IntroScene criada');
     }
 
     // Create simple assets using graphics instead of complex SVG
@@ -54,8 +50,6 @@ class IntroScene extends Phaser.Scene {
         graphics.fillRect(0, 0, 200, 100);
         graphics.generateTexture('logo', 200, 100);
         graphics.destroy();
-
-        console.log('Logo texture criada');
     }
 
     // Create background with Arabian theme
@@ -193,9 +187,8 @@ class IntroScene extends Phaser.Scene {
         try {
             if (this.gameController && this.gameController.loadGameData) {
                 await this.gameController.loadGameData();
-                console.log('Dados do jogo carregados com sucesso');
             } else {
-                console.log('GameController não disponível - usando dados padrão');
+                // GameController not available - using default data
             }
         } catch (error) {
             console.warn('Aviso: Erro ao carregar dados (continuando com fallback):', error);

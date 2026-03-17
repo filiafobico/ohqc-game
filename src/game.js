@@ -45,8 +45,6 @@ class CalculavaGame {
 
         // Add global game reference for scenes to access
         this.phaserGame.registry.set('gameController', this);
-
-        console.log('O Homem que Calculava iniciado!');
     }
 
     // Load game data (levels, characters, etc.)
@@ -65,7 +63,6 @@ class CalculavaGame {
                 characters: charactersData.characters
             };
 
-            console.log('Dados do jogo carregados:', this.gameData);
             return this.gameData;
 
         } catch (error) {
