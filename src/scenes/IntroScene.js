@@ -8,7 +8,23 @@ class IntroScene extends Phaser.Scene {
     }
 
     preload() {
-        // Load placeholder assets
+        // Load character portraits
+        this.load.image('beremiz-portrait', 'assets/beremiz_portrait.png');
+        this.load.image('hassan-portrait', 'assets/hassan_portrait.png');
+        this.load.image('mercador-portrait', 'assets/mercador_portrait.png');
+        this.load.image('califa-portrait', 'assets/califa_portrait.png');
+        this.load.image('poeta-portrait', 'assets/poeta_portrait.png');
+        this.load.image('sabio-portrait', 'assets/sabio_portrait.png');
+        this.load.image('viajante1-portrait', 'assets/viajante1_portrait.png');
+        this.load.image('viajante2-portrait', 'assets/viajante2_portrait.png');
+
+        // Load background images
+        this.load.image('desert-caravan', 'assets/medieval arabian desert caravan.png');
+        this.load.image('bagda-market', 'assets/Mercado medieval em Bagdá.png');
+
+        console.log('🖼️ Carregando imagens do jogo...');
+
+        // Load placeholder assets as fallback
         this.loadPlaceholderAssets();
     }
 
