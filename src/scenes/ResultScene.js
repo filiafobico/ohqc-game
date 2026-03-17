@@ -37,82 +37,33 @@ class ResultScene extends Phaser.Scene {
     createBackground() {
         const { width, height } = this.sys.game.config;
 
-        // Background color based on success/failure
-        const bgColor = this.questionResult.isCorrect ? 0x013220 : 0x8B0000; // Dark green or dark red
+        // Use success.png or error.png as background based on result
+        const backgroundKey = this.questionResult.isCorrect ? 'success' : 'error';
 
-        const graphics = this.add.graphics();
-        graphics.fillGradientStyle(bgColor, bgColor, 0x000000, 0x000000, 1);
-        graphics.fillRect(0, 0, width, height);
+        try {
+            // Try to load result background image
+            const bgImage = this.add.image(width / 2, height / 2, backgroundKey);
+            bgImage.setDisplaySize(width, height);
+            bgImage.setAlpha(0.9); // Slightly transparent for text readability
+        } catch (error) {
+            console.warn(`⚠️ Fallback para background programático:`, error);
 
-        // Add decorative elements
-        this.addResultDecorations();
-    }
-
-    // Add decorative elements based on result
-    addResultDecorations() {
-        const { width, height } = this.sys.game.config;
-
-        const decorations = this.add.graphics();
-
-        if (this.questionResult.isCorrect) {
-            // Success decorations - golden elements
-            decorations.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.6);
-
-            // Draw success symbols (simple diamonds instead of stars)
-            for (let i = 0; i < 6; i++) {
-                const angle = (360 / 6) * i;
-                const x = width / 2 + Math.cos(Phaser.Math.DegToRad(angle)) * 100;
-                const y = 150 + Math.sin(Phaser.Math.DegToRad(angle)) * 50;
-
-                // Draw simple diamond shape
-                decorations.strokeCircle(x, y, 15);
-                decorations.strokeCircle(x, y, 8);
-            }
-        } else {
-            // Failure decorations - simpler elements
-            decorations.lineStyle(1, 0xFF6B35, 0.4);
-
-            // Draw simple patterns
-            for (let i = 0; i < 4; i++) {
-                const x = 150 + (i * 200);
-                decorations.strokeCircle(x, 150, 30);
-            }
+            // Fallback to colored background
+            const bgColor = this.questionResult.isCorrect ? 0x013220 : 0x8B0000; // Dark green or dark red
+            const graphics = this.add.graphics();
+            graphics.fillGradientStyle(bgColor, bgColor, 0x000000, 0x000000, 1);
+            graphics.fillRect(0, 0, width, height);
         }
+
+        // Remove decorative elements since image provides the visual feedback
     }
 
     // Create result UI elements
     createUI() {
         const { width, height } = this.sys.game.config;
 
-        // Result header
-        const resultText = this.questionResult.isCorrect ? 'PARABÉNS!' : 'RESPOSTA INCORRETA';
-        const resultColor = this.questionResult.isCorrect ? '#32CD32' : '#FF4500';
-
-        this.resultHeader = this.add.text(width / 2, 120, resultText, {
-            fontSize: '36px',
-            fill: resultColor,
-            fontFamily: 'Arial, serif',
-            fontStyle: 'bold',
-            stroke: '#ffffff',
-            strokeThickness: 2
-        });
-        this.resultHeader.setOrigin(0.5);
-        this.resultHeader.setAlpha(0);
-
-        // Answer summary
-        const summaryText = this.questionResult.isCorrect
-            ? `Você escolheu: ${this.questionResult.selectedAnswer} ✓`
-            : `Você escolheu: ${this.questionResult.selectedAnswer}\nResposta correta: ${this.questionResult.correctAnswer}`;
-
-        this.answerSummary = this.add.text(width / 2, 180, summaryText, {
-            fontSize: '18px',
-            fill: '#ffffff',
-            fontFamily: 'Arial, sans-serif',
-            align: 'center',
-            lineSpacing: 5
-        });
-        this.answerSummary.setOrigin(0.5);
-        this.answerSummary.setAlpha(0);
+        // Remove feedback messages - images provide visual feedback
+        // Only keep essential UI elements
 
         // Level indicator
         this.levelIndicator = this.add.text(50, 50, `Nível ${this.currentLevel.id}/20`, {
@@ -129,7 +80,7 @@ class ResultScene extends Phaser.Scene {
 
         // Animate UI elements
         this.tweens.add({
-            targets: [this.resultHeader, this.answerSummary, this.levelIndicator],
+            targets: [this.levelIndicator],
             alpha: { from: 0, to: 1 },
             duration: GameConfig.ANIMATIONS.FADE_DURATION,
             ease: 'Power2'
@@ -182,11 +133,9 @@ class ResultScene extends Phaser.Scene {
         // Create explanation dialogue
         const explanationDialogues = this.createExplanationDialogues();
 
-        // Start explanation after a short delay
-        this.time.delayedCall(1500, () => {
-            this.dialogueSystem.startDialogue(explanationDialogues, () => {
-                this.showContinueButton();
-            });
+        // Start explanation immediately - no need for delay since visual feedback is provided by background image
+        this.dialogueSystem.startDialogue(explanationDialogues, () => {
+            this.showContinueButton();
         });
     }
 

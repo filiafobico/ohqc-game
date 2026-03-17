@@ -22,6 +22,13 @@ class IntroScene extends Phaser.Scene {
         this.load.image('desert-caravan', 'assets/desert-caravan.png');
         this.load.image('bagda-market', 'assets/bagda-market.png');
 
+        // Load result background images
+        this.load.image('success', 'assets/success.png');
+        this.load.image('error', 'assets/error.png');
+
+        // Load initial screen image
+        this.load.image('init-screen', 'assets/init_screen.png');
+
         // Load placeholder assets as fallback
         this.loadPlaceholderAssets();
     }
@@ -52,92 +59,36 @@ class IntroScene extends Phaser.Scene {
         graphics.destroy();
     }
 
-    // Create background with Arabian theme
+    // Create background with initial screen image
     createBackground() {
         const { width, height } = this.sys.game.config;
 
-        // Create gradient background
-        const graphics = this.add.graphics();
+        // Use the initial screen image as background
+        try {
+            const bgImage = this.add.image(width / 2, height / 2, 'init-screen');
+            bgImage.setDisplaySize(width, height);
+        } catch (error) {
+            console.warn('⚠️ Fallback para background programático:', error);
 
-        // Desert sunset colors
-        graphics.fillGradientStyle(0x8B4513, 0x8B4513, 0xD2691E, 0xD2691E, 1);
-        graphics.fillRect(0, 0, width, height);
-
-        // Add some simple decorative elements
-        this.createDecorations();
-    }
-
-    // Create simple decorative elements
-    createDecorations() {
-        const { width, height } = this.sys.game.config;
-
-        // Simple geometric patterns
-        const decorations = this.add.graphics();
-        decorations.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.6);
-
-        // Draw simple Arabic-inspired patterns
-        for (let i = 0; i < 5; i++) {
-            const x = 50 + (i * (width - 100) / 4);
-            decorations.strokeCircle(x, 100, 20);
-            decorations.strokeCircle(x, height - 100, 15);
+            // Fallback to gradient background
+            const graphics = this.add.graphics();
+            graphics.fillGradientStyle(0x8B4513, 0x8B4513, 0xD2691E, 0xD2691E, 1);
+            graphics.fillRect(0, 0, width, height);
         }
     }
 
-    // Create intro UI elements
+    // Create intro UI elements - minimal interface since image contains the visuals
     createIntroUI() {
         const { width, height } = this.sys.game.config;
 
-        // Game title - VISIBLE immediately
-        const titleText = this.add.text(width / 2, height / 2 - 150, 'O HOMEM QUE CALCULAVA', {
-            fontSize: '42px',
-            fill: GameConfig.COLORS.SECONDARY,
-            fontFamily: 'Arial, serif',
-            fontStyle: 'bold',
-            stroke: '#000000',
-            strokeThickness: 2
-        });
-        titleText.setOrigin(0.5);
-
-        // Subtitle - VISIBLE immediately
-        const subtitleText = this.add.text(width / 2, height / 2 - 100, 'Aventuras de Beremiz Samir', {
-            fontSize: '24px',
-            fill: '#ffffff',
-            fontFamily: 'Arial, serif',
-            fontStyle: 'italic'
-        });
-        subtitleText.setOrigin(0.5);
-
-        // Description - VISIBLE immediately
-        const descriptionText = this.add.text(width / 2, height / 2 - 30,
-            'Um jogo educativo baseado no livro de Malba Tahan\n\n' +
-            'Resolva problemas matemáticos junto com Beremiz\n' +
-            'em sua jornada através do Oriente', {
-            fontSize: '18px',
-            fill: '#ffffff',
-            fontFamily: 'Arial, sans-serif',
-            align: 'center',
-            lineSpacing: 5
-        });
-        descriptionText.setOrigin(0.5);
-
-        // Start button - VISIBLE immediately
+        // Only create start button as invisible clickable area - image provides the visual button
         const startButton = this.add.graphics();
-        startButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
-        startButton.lineStyle(3, GameConfig.COLORS.PRIMARY);
-        startButton.fillRoundedRect(width / 2 - 100, height / 2 + 80, 200, 60, 15);
-        startButton.strokeRoundedRect(width / 2 - 100, height / 2 + 80, 200, 60, 15);
-
-        const startButtonText = this.add.text(width / 2, height / 2 + 110, 'COMEÇAR AVENTURA', {
-            fontSize: '18px',
-            fill: '#000000',
-            fontFamily: 'Arial, sans-serif',
-            fontStyle: 'bold'
-        });
-        startButtonText.setOrigin(0.5);
+        startButton.fillStyle(0x000000, 0); // Transparent
+        startButton.fillRect(width / 2 - 320, height / 2 + 40, 210, 60); // Adjust position to match image button
 
         // Make button interactive
         startButton.setInteractive(
-            new Phaser.Geom.Rectangle(width / 2 - 100, height / 2 + 80, 200, 60),
+            new Phaser.Geom.Rectangle(width / 2 - 320, height / 2 + 40, 210, 60),
             Phaser.Geom.Rectangle.Contains
         );
 
@@ -146,29 +97,14 @@ class IntroScene extends Phaser.Scene {
             this.startGame();
         });
 
-        // Animate elements in sequence - but make them visible first
-        const elements = [titleText, subtitleText, descriptionText, startButton, startButtonText];
-        elements.forEach((element, index) => {
-            // Set alpha to 0 for animation, then animate to 1
-            element.setAlpha(0);
-            this.tweens.add({
-                targets: element,
-                alpha: 1,
-                duration: 500,
-                delay: index * 100,
-                ease: 'Power2.easeOut'
-            });
+        // Optional: Add hover effect to indicate clickable area (for testing)
+        startButton.on('pointerover', () => {
+            this.input.setDefaultCursor('pointer');
         });
 
-        // Credits text
-        const creditsText = this.add.text(width / 2, height - 50,
-            'Criado com Phaser.js • Inspirado em Malba Tahan', {
-            fontSize: '12px',
-            fill: GameConfig.COLORS.SECONDARY,
-            fontFamily: 'Arial, sans-serif',
-            alpha: 0.7
+        startButton.on('pointerout', () => {
+            this.input.setDefaultCursor('default');
         });
-        creditsText.setOrigin(0.5);
     }
 
     // Load game data asynchronously
