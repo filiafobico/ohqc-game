@@ -4,7 +4,7 @@
 class CalculavaGame {
     constructor() {
         this.currentLevel = 1;
-        this.maxLevels = 20;
+        this.maxLevels = 0;
         this.gameData = null;
 
         this.config = {
@@ -63,6 +63,9 @@ class CalculavaGame {
                 characters: charactersData.characters
             };
 
+            // Atualiza maxLevels dinamicamente baseado nos dados carregados
+            this.maxLevels = this.gameData.levels.length;
+
             return this.gameData;
 
         } catch (error) {
@@ -87,6 +90,11 @@ class CalculavaGame {
         }
 
         return this.gameData.characters.find(char => char.name === name);
+    }
+
+    // Get maximum number of levels
+    getMaxLevels() {
+        return this.maxLevels;
     }
 
     // Progress to next level

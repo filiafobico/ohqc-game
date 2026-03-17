@@ -112,7 +112,7 @@ class StoryScene extends Phaser.Scene {
         this.levelTitle.setAlpha(0);
 
         // Level number indicator
-        this.levelIndicator = this.add.text(50, 50, `Nível ${this.currentLevel.id}/20`, {
+        this.levelIndicator = this.add.text(50, 50, `Nível ${this.currentLevel.id}/${this.gameController.getMaxLevels()}`, {
             fontSize: '16px',
             fill: '#ffffff',
             fontFamily: 'Arial, sans-serif',
