@@ -192,15 +192,21 @@ class StoryScene extends Phaser.Scene {
             text: `Nível ${this.currentLevel.id}: ${this.currentLevel.title}`
         });
 
-        // Add story parts
-        this.currentLevel.story.forEach((storyPart, index) => {
-            const character = index === 0 ? 'Hassan' :
-                           (index % 2 === 0 ? 'Hassan' : 'Beremiz');
-
-            dialogues.push({
-                character: character,
-                text: storyPart
-            });
+        // Add story parts - now using character and text from configuration
+        this.currentLevel.story.forEach((storyPart) => {
+            if (typeof storyPart === 'object' && storyPart.character && storyPart.text) {
+                // New format with configured character
+                dialogues.push({
+                    character: storyPart.character,
+                    text: storyPart.text
+                });
+            } else {
+                // Fallback for old format (simple string)
+                dialogues.push({
+                    character: 'Hassan',
+                    text: typeof storyPart === 'string' ? storyPart : storyPart.text
+                });
+            }
         });
 
         // Add transition to question

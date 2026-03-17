@@ -7,11 +7,12 @@
       "backgroundImage": "desert-caravan",
       "characters": ["Hassan", "Beremiz"],
       "story": [
-        "Três irmãos discutem a herança de 35 camelos.",
-        "O primeiro deveria receber metade.",
-        "O segundo um terço.",
-        "O terceiro um nono.",
-        "Mas como dividir 35 camelos exatamente?"
+        { "character": "Hassan", "text": "Três irmãos discutem a herança de 35 camelos." },
+        { "character": "Hassan", "text": "O primeiro deveria receber metade." },
+        { "character": "Hassan", "text": "O segundo um terço." },
+        { "character": "Hassan", "text": "O terceiro um nono." },
+        { "character": "Hassan", "text": "Beremiz e eu temos dois camelos." },
+        { "character": "Hassan", "text": "Mas como dividir 35 camelos para 3 pessoas exatamente?" }
       ],
       "question": "Como Beremiz resolveu a divisão dos camelos?",
       "options": [
@@ -22,13 +23,13 @@
       ],
       "correctIndex": 1,
       "explanation": [
-        "Beremiz empresta um de nossos camelos.",
-        "Agora existem 36 camelos para dividir.",
-        "Metade de 36 = 18 camelos",
-        "Um terço de 36 = 12 camelos",
-        "Um nono de 36 = 4 camelos",
-        "Total distribuído: 18 + 12 + 4 = 34 camelos",
-        "Sobram 2 camelos: devolvemos o emprestado e ficamos com 1!"
+        { "character": "Beremiz", "text": "Empresto um de nossos camelos." },
+        { "character": "Beremiz", "text": "Agora existem 36 camelos para dividir." },
+        { "character": "Beremiz", "text": "Metade de 36 = 18 camelos" },
+        { "character": "Beremiz", "text": "Um terço de 36 = 12 camelos" },
+        { "character": "Beremiz", "text": "Um nono de 36 = 4 camelos" },
+        { "character": "Hassan", "text": "Total distribuído: 18 + 12 + 4 = 34 camelos" },
+        { "character": "Beremiz", "text": "Sobram 2 camelos: devolvemos o emprestado e ficamos com 1!" }
       ]
     },
     {
@@ -38,10 +39,10 @@
       "backgroundImage": "bagda-market",
       "characters": ["Mercador", "Beremiz"],
       "story": [
-        "Um mercador possui 60 pérolas.",
-        "Quer dividir igualmente entre seus 4 filhos.",
-        "Mas também quer dar 5 pérolas para a mesquita.",
-        "Quantas pérolas cada filho receberá?"
+        { "character": "Mercador", "text": "Um mercador possui 60 pérolas." },
+        { "character": "Mercador", "text": "Quer dividir igualmente entre seus 4 filhos." },
+        { "character": "Mercador", "text": "Mas também quer dar 5 pérolas para a mesquita." },
+        { "character": "Beremiz", "text": "Quantas pérolas cada filho receberá?" }
       ],
       "question": "Quantas pérolas cada filho receberá?",
       "options": [
@@ -52,11 +53,11 @@
       ],
       "correctIndex": 1,
       "explanation": [
-        "Total de pérolas: 60",
-        "Pérolas para a mesquita: 5",
-        "Pérolas restantes: 60 - 5 = 55",
-        "Dividindo entre 4 filhos: 55 ÷ 4 = 13 pérolas cada",
-        "Sobra: 55 - (13 × 4) = 55 - 52 = 3 pérolas"
+        { "character": "Beremiz", "text": "Total de pérolas: 60" },
+        { "character": "Beremiz", "text": "Pérolas para a mesquita: 5" },
+        { "character": "Beremiz", "text": "Pérolas restantes: 60 - 5 = 55" },
+        { "character": "Mercador", "text": "Dividindo entre 4 filhos: 55 ÷ 4 = 13 pérolas cada" },
+        { "character": "Hassan", "text": "Sobra: 55 - (13 × 4) = 55 - 52 = 3 pérolas" }
       ]
     },
     {
@@ -66,11 +67,11 @@
       "backgroundImage": "desert-caravan",
       "characters": ["Viajante1", "Viajante2", "Beremiz"],
       "story": [
-        "Dois viajantes encontram Beremiz no deserto.",
-        "O primeiro possui 3 pães, o segundo possui 2 pães.",
-        "Os três compartilham igualmente os 5 pães.",
-        "Um terceiro viajante aparece e paga 5 moedas pelos pães.",
-        "Como dividir as moedas justamente?"
+        { "character": "Hassan", "text": "Dois viajantes encontram Beremiz no deserto." },
+        { "character": "Viajante1", "text": "O primeiro possui 3 pães, o segundo possui 2 pães." },
+        { "character": "Beremiz", "text": "Os três compartilham igualmente os 5 pães." },
+        { "character": "Viajante2", "text": "Um terceiro viajante aparece e paga 5 moedas pelos pães." },
+        { "character": "Viajante1", "text": "Como dividir as moedas justamente?" }
       ],
       "question": "Como dividir as 5 moedas entre os donos dos pães?",
       "options": [
@@ -81,11 +82,11 @@
       ],
       "correctIndex": 1,
       "explanation": [
-        "Cada pessoa comeu 5÷3 = 5/3 de pão",
-        "O primeiro contribuiu: 3 - 5/3 = 9/3 - 5/3 = 4/3 de pão",
-        "O segundo contribuiu: 2 - 5/3 = 6/3 - 5/3 = 1/3 de pão",
-        "Proporção: 4/3 : 1/3 = 4:1",
-        "Primeiro recebe: 4 moedas, segundo recebe: 1 moeda"
+        { "character": "Beremiz", "text": "Cada pessoa comeu 5÷3 = 5/3 de pão" },
+        { "character": "Beremiz", "text": "O primeiro contribuiu: 3 - 5/3 = 9/3 - 5/3 = 4/3 de pão" },
+        { "character": "Beremiz", "text": "O segundo contribuiu: 2 - 5/3 = 6/3 - 5/3 = 1/3 de pão" },
+        { "character": "Hassan", "text": "Proporção: 4/3 : 1/3 = 4:1" },
+        { "character": "Beremiz", "text": "Primeiro recebe: 4 moedas, segundo recebe: 1 moeda" }
       ]
     },
     {
@@ -95,11 +96,11 @@
       "backgroundImage": "bagda-market",
       "characters": ["Califa", "Poeta", "Beremiz"],
       "story": [
-        "Um poeta criou um poema de 30 versos para o Califa.",
-        "O Califa oferece: 1 dinar pelo primeiro verso,",
-        "2 dinares pelo segundo, 4 pelo terceiro,",
-        "dobrando sempre o valor.",
-        "Qual será o pagamento total?"
+        { "character": "Hassan", "text": "Um poeta criou um poema de 30 versos para o Califa." },
+        { "character": "Califa", "text": "O Califa oferece: 1 dinar pelo primeiro verso," },
+        { "character": "Califa", "text": "2 dinares pelo segundo, 4 pelo terceiro," },
+        { "character": "Califa", "text": "dobrando sempre o valor." },
+        { "character": "Poeta", "text": "Qual será o pagamento total?" }
       ],
       "question": "Quanto o poeta receberá pelos 30 versos?",
       "options": [
@@ -110,12 +111,12 @@
       ],
       "correctIndex": 0,
       "explanation": [
-        "Esta é uma progressão geométrica: 1, 2, 4, 8, 16...",
-        "Cada termo é: 2^(n-1), onde n é o número do verso",
-        "Soma de progressão geométrica: S = a₁(2ⁿ - 1)/(2 - 1)",
-        "S = 1(2³⁰ - 1)/1 = 2³⁰ - 1",
-        "2³⁰ = 1.073.741.824",
-        "Total: 1.073.741.824 - 1 = 1.073.741.823 dinares"
+        { "character": "Beremiz", "text": "Esta é uma progressão geométrica: 1, 2, 4, 8, 16..." },
+        { "character": "Beremiz", "text": "Cada termo é: 2^(n-1), onde n é o número do verso" },
+        { "character": "Beremiz", "text": "Soma de progressão geométrica: S = a₁(2ⁿ - 1)/(2 - 1)" },
+        { "character": "Hassan", "text": "S = 1(2³⁰ - 1)/1 = 2³⁰ - 1" },
+        { "character": "Beremiz", "text": "2³⁰ = 1.073.741.824" },
+        { "character": "Califa", "text": "Total: 1.073.741.824 - 1 = 1.073.741.823 dinares" }
       ]
     },
     {
@@ -125,11 +126,11 @@
       "backgroundImage": "bagda-market",
       "characters": ["Mercador", "Beremiz"],
       "story": [
-        "Um mercador possui algumas escravas.",
-        "Se as colocar em grupos de 3, sobram 2.",
-        "Em grupos de 5, sobram 3.",
-        "Em grupos de 7, sobram 2.",
-        "Qual o menor número de escravas?"
+        { "character": "Mercador", "text": "Um mercador possui algumas escravas." },
+        { "character": "Mercador", "text": "Se as colocar em grupos de 3, sobram 2." },
+        { "character": "Mercador", "text": "Em grupos de 5, sobram 3." },
+        { "character": "Mercador", "text": "Em grupos de 7, sobram 2." },
+        { "character": "Beremiz", "text": "Qual o menor número de escravas?" }
       ],
       "question": "Qual é o menor número de escravas?",
       "options": [
@@ -140,14 +141,14 @@
       ],
       "correctIndex": 0,
       "explanation": [
-        "Precisamos encontrar n tal que:",
-        "n ≡ 2 (mod 3)",
-        "n ≡ 3 (mod 5)",
-        "n ≡ 2 (mod 7)",
-        "Testando valores: 23 satisfaz todas as condições:",
-        "23 = 3×7 + 2 (resto 2)",
-        "23 = 5×4 + 3 (resto 3)",
-        "23 = 7×3 + 2 (resto 2)"
+        { "character": "Beremiz", "text": "Precisamos encontrar n tal que:" },
+        { "character": "Beremiz", "text": "n ≡ 2 (mod 3)" },
+        { "character": "Beremiz", "text": "n ≡ 3 (mod 5)" },
+        { "character": "Beremiz", "text": "n ≡ 2 (mod 7)" },
+        { "character": "Hassan", "text": "Testando valores: 23 satisfaz todas as condições:" },
+        { "character": "Beremiz", "text": "23 = 3×7 + 2 (resto 2)" },
+        { "character": "Beremiz", "text": "23 = 5×4 + 3 (resto 3)" },
+        { "character": "Beremiz", "text": "23 = 7×3 + 2 (resto 2)" }
       ]
     }
   ]

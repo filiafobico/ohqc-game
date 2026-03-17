@@ -155,14 +155,22 @@ class ResultScene extends Phaser.Scene {
             });
         }
 
-        // Add explanation steps
+        // Add explanation steps - now using character and text from configuration
         if (this.currentLevel.explanation) {
-            this.currentLevel.explanation.forEach((step, index) => {
-                const character = index % 2 === 0 ? 'Beremiz' : 'Hassan';
-                dialogues.push({
-                    character: character,
-                    text: step
-                });
+            this.currentLevel.explanation.forEach((step) => {
+                if (typeof step === 'object' && step.character && step.text) {
+                    // New format with configured character
+                    dialogues.push({
+                        character: step.character,
+                        text: step.text
+                    });
+                } else {
+                    // Fallback for old format (simple string)
+                    dialogues.push({
+                        character: 'Beremiz',
+                        text: typeof step === 'string' ? step : step.text
+                    });
+                }
             });
         }
 
