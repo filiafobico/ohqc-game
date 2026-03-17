@@ -4,6 +4,7 @@
       "id": 1,
       "title": "Os 35 camelos",
       "background": "desert",
+      "backgroundImage": "desert-caravan",
       "characters": ["Hassan", "Beremiz"],
       "story": [
         "Três irmãos discutem a herança de 35 camelos.",
@@ -34,6 +35,7 @@
       "id": 2,
       "title": "As pérolas do mercador",
       "background": "market",
+      "backgroundImage": "bagda-market",
       "characters": ["Mercador", "Beremiz"],
       "story": [
         "Um mercador possui 60 pérolas.",
@@ -61,6 +63,7 @@
       "id": 3,
       "title": "Os 5 pães dos viajantes",
       "background": "desert",
+      "backgroundImage": "desert-caravan",
       "characters": ["Viajante1", "Viajante2", "Beremiz"],
       "story": [
         "Dois viajantes encontram Beremiz no deserto.",
@@ -89,6 +92,7 @@
       "id": 4,
       "title": "O pagamento do poeta",
       "background": "palace",
+      "backgroundImage": "bagda-market",
       "characters": ["Califa", "Poeta", "Beremiz"],
       "story": [
         "Um poeta criou um poema de 30 versos para o Califa.",
@@ -118,6 +122,7 @@
       "id": 5,
       "title": "O problema das escravas",
       "background": "market",
+      "backgroundImage": "bagda-market",
       "characters": ["Mercador", "Beremiz"],
       "story": [
         "Um mercador possui algumas escravas.",

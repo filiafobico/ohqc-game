@@ -19,8 +19,8 @@ class IntroScene extends Phaser.Scene {
         this.load.image('viajante2-portrait', 'assets/viajante2_portrait.png');
 
         // Load background images
-        this.load.image('desert-caravan', 'assets/medieval arabian desert caravan.png');
-        this.load.image('bagda-market', 'assets/Mercado medieval em Bagdá.png');
+        this.load.image('desert-caravan', 'assets/desert-caravan.png');
+        this.load.image('bagda-market', 'assets/bagda-market.png');
 
         // Load placeholder assets as fallback
         this.loadPlaceholderAssets();

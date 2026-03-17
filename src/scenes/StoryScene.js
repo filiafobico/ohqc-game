@@ -35,10 +35,8 @@ class StoryScene extends Phaser.Scene {
 
         // Try to use background image first
         try {
-            let backgroundKey = 'desert-caravan';
-            if (this.currentLevel >= 3) {
-                backgroundKey = 'bagda-market';
-            }
+            // Use the backgroundImage from level configuration
+            const backgroundKey = this.currentLevel.backgroundImage || 'desert-caravan';
 
             const bgImage = this.add.image(width / 2, height / 2, backgroundKey);
             bgImage.setDisplaySize(width, height);
