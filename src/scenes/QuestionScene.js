@@ -35,12 +35,17 @@ class QuestionScene extends Phaser.Scene {
     createBackground() {
         const { width, height } = this.sys.game.config;
 
-        // Create a more focused background for questions
-        const graphics = this.add.graphics();
+        try {
+            // Use the backgroundImage from level configuration
+            const backgroundKey = this.currentLevel.backgroundImage;
 
-        // Dark gradient background for focus
-        graphics.fillGradientStyle(0x2F4F4F, 0x2F4F4F, 0x1C1C1C, 0x1C1C1C, 1);
-        graphics.fillRect(0, 0, width, height);
+            const bgImage = this.add.image(width / 2, height / 2, backgroundKey);
+            bgImage.setDisplaySize(width, height);
+            bgImage.setAlpha(0.9); // Slightly more transparent for question readability
+
+        } catch (error) {
+            console.warn('⚠️ Fallback para background programático:', error);
+        }
 
         // Add subtle decorations
         this.addQuestionDecorations();
@@ -51,11 +56,14 @@ class QuestionScene extends Phaser.Scene {
         const { width, height } = this.sys.game.config;
 
         const decorations = this.add.graphics();
-        decorations.lineStyle(1, GameConfig.COLORS.SECONDARY, 0.3);
+        decorations.lineStyle(2, 0xFFD700, 0.4); // Golden border for consistency with theme
 
-        // Geometric border pattern
+        // Single elegant border frame
+        decorations.strokeRoundedRect(40, 40, width - 80, height - 80, 15);
+
+        // Subtle corner accents
+        decorations.lineStyle(1, 0xFFD700, 0.6);
         decorations.strokeRoundedRect(30, 30, width - 60, height - 60, 20);
-        decorations.strokeRoundedRect(50, 50, width - 100, height - 100, 15);
     }
 
     // Create question UI elements
@@ -73,20 +81,14 @@ class QuestionScene extends Phaser.Scene {
 
         // Problem title
         this.problemTitle = this.add.text(width / 2, 100, this.currentLevel.title, {
-            fontSize: '24px',
+            fontSize: '28px',
             fill: GameConfig.COLORS.SECONDARY,
             fontFamily: 'Arial, serif',
-            fontStyle: 'bold'
+            fontStyle: 'bold',
+            stroke: '#000000',
+            strokeThickness: 2
         });
         this.problemTitle.setOrigin(0.5);
-
-        // Instructions
-        this.instructions = this.add.text(width / 2, 130, 'Escolha a resposta correta:', {
-            fontSize: '16px',
-            fill: '#ffffff',
-            fontFamily: 'Arial, sans-serif'
-        });
-        this.instructions.setOrigin(0.5);
 
         // Animate UI elements
         this.tweens.add({
@@ -140,12 +142,7 @@ class QuestionScene extends Phaser.Scene {
     showSuccessFeedback() {
         // Play success animation
         this.animationSystem.showSuccessAnimation(() => {
-            // Special animation for camel level
-            if (this.currentLevel.id === 1) {
-                this.showCamelAnimation();
-            } else {
-                this.moveToResults();
-            }
+            this.moveToResults();
         });
     }
 
@@ -155,20 +152,6 @@ class QuestionScene extends Phaser.Scene {
         this.animationSystem.showFailureAnimation(() => {
             this.moveToResults();
         });
-    }
-
-    // Show special camel counting animation for level 1
-    showCamelAnimation() {
-        if (this.currentLevel.id === 1) {
-            // Animate the camel division
-            const divisions = [18, 12, 4]; // Correct division for 35 camels problem
-
-            this.animationSystem.animateCamelCounting(36, divisions, () => {
-                this.moveToResults();
-            });
-        } else {
-            this.moveToResults();
-        }
     }
 
     // Move to results scene

@@ -45,17 +45,6 @@ class QuestionSystem {
         questionBg.setAlpha(0);
         this.questionElements.push(questionBg);
 
-        // Question title
-        const questionTitle = this.scene.add.text(width / 2, 200, 'Problema Matemático', {
-            fontSize: '24px',
-            fill: GameConfig.COLORS.SECONDARY,
-            fontFamily: 'Arial, serif',
-            fontStyle: 'bold'
-        });
-        questionTitle.setOrigin(0.5);
-        questionTitle.setAlpha(0);
-        this.questionElements.push(questionTitle);
-
         // Question text
         const questionText = this.scene.add.text(width / 2, 270, this.question, {
             fontSize: '18px',

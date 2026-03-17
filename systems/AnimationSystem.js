@@ -168,43 +168,6 @@ class AnimationSystem {
         }
     }
 
-    // Animate camel counting (for the first level)
-    animateCamelCounting(totalCamels, divisions, callback = null) {
-        const { width, height } = this.scene.sys.game.config;
-        const camelElements = [];
-
-        // Create visual representation of camels
-        const camelSize = 20;
-        const cols = 8;
-        const startX = width / 2 - (cols * camelSize) / 2;
-        const startY = height / 2 - 100;
-
-        // Create camel representations (simple circles)
-        for (let i = 0; i < totalCamels; i++) {
-            const x = startX + (i % cols) * (camelSize + 5);
-            const y = startY + Math.floor(i / cols) * (camelSize + 5);
-
-            const camel = this.scene.add.graphics();
-            camel.fillStyle(0x8B4513, 1); // Brown color
-            camel.fillCircle(x, y, camelSize / 2);
-            camel.setAlpha(0);
-
-            camelElements.push(camel);
-        }
-
-        // Animate camels appearing
-        this.scene.tweens.add({
-            targets: camelElements,
-            alpha: { from: 0, to: 1 },
-            duration: 100,
-            delay: (target, index) => index * 50, // Stagger appearance
-            onComplete: () => {
-                // Show division animation
-                this.animateDivision(camelElements, divisions, callback);
-            }
-        });
-    }
-
     // Animate division of items (like camels)
     animateDivision(elements, divisions, callback = null) {
         const { width } = this.scene.sys.game.config;

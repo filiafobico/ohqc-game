@@ -40,45 +40,9 @@ class StoryScene extends Phaser.Scene {
 
             const bgImage = this.add.image(width / 2, height / 2, backgroundKey);
             bgImage.setDisplaySize(width, height);
-            bgImage.setAlpha(0.7); // Semi-transparent for text readability
         } catch (error) {
             console.warn('⚠️ Fallback para background programático:', error);
-
-            // Fallback: Create background based on level's background setting
-            const backgroundType = this.currentLevel.background || 'desert';
-            const graphics = this.add.graphics();
-
-            switch(backgroundType) {
-                case 'desert':
-                    // Desert gradient
-                    graphics.fillGradientStyle(0xF4A460, 0xF4A460, 0x8B4513, 0x8B4513, 1);
-                    graphics.fillRect(0, 0, width, height);
-                    this.addDesertDecorations();
-                    break;
-                case 'palace':
-                    // Palace gradient
-                    graphics.fillGradientStyle(0x4B0082, 0x4B0082, 0x8B008B, 0x8B008B, 1);
-                    graphics.fillRect(0, 0, width, height);
-                    this.addPalaceDecorations();
-                    break;
-                case 'market':
-                    // Market gradient
-                    graphics.fillGradientStyle(0xFF8C00, 0xFF8C00, 0xD2691E, 0xD2691E, 1);
-                    graphics.fillRect(0, 0, width, height);
-                    this.addMarketDecorations();
-                    break;
-                default:
-                    // Default desert
-                    graphics.fillGradientStyle(0xF4A460, 0xF4A460, 0x8B4513, 0x8B4513, 1);
-                    graphics.fillRect(0, 0, width, height);
-                    this.addDesertDecorations();
-            }
         }
-
-        // Add overlay for text readability
-        const overlay = this.add.graphics();
-        overlay.fillStyle(0x000000, 0.4);
-        overlay.fillRect(0, 0, width, height);
     }
 
     // Add desert decorations
