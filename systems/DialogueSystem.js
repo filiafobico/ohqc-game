@@ -8,6 +8,7 @@ class DialogueSystem {
         this.currentDialogueIndex = 0;
         this.isDisplaying = false;
         this.onComplete = null;
+        this.buttonEnabled = true; // Control button state
 
         this.createDialogueUI();
     }
@@ -67,21 +68,55 @@ class DialogueSystem {
 
         // Button hover effects
         this.continueButton.on('pointerover', () => {
-            this.continueButton.clear();
-            this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 0.8);
-            this.continueButton.fillRoundedRect(width - 200, height - 120, 130, 40, 8);
+            if (this.buttonEnabled) {
+                this.continueButton.clear();
+                this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 0.8);
+                this.continueButton.fillRoundedRect(width - 200, height - 120, 130, 40, 8);
+            }
         });
 
         this.continueButton.on('pointerout', () => {
-            this.continueButton.clear();
-            this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
-            this.continueButton.fillRoundedRect(width - 200, height - 120, 130, 40, 8);
+            if (this.buttonEnabled) {
+                this.continueButton.clear();
+                this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
+                this.continueButton.fillRoundedRect(width - 200, height - 120, 130, 40, 8);
+            }
         });
 
         // Continue button click
         this.continueButton.on('pointerdown', () => {
-            this.nextDialogue();
+            if (this.buttonEnabled) {
+                this.nextDialogue();
+            }
         });
+    }
+
+    // Enable/Disable continue button
+    enableButton() {
+        this.buttonEnabled = true;
+        this.updateButtonVisuals();
+    }
+
+    disableButton() {
+        this.buttonEnabled = false;
+        this.updateButtonVisuals();
+    }
+
+    updateButtonVisuals() {
+        const { width, height } = this.scene.sys.game.config;
+
+        this.continueButton.clear();
+        if (this.buttonEnabled) {
+            // Enabled state - normal colors
+            this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
+            this.continueButton.fillRoundedRect(width - 200, height - 120, 130, 40, 8);
+            this.continueButtonText.setTint(0x000000);
+        } else {
+            // Disabled state - grayed out
+            this.continueButton.fillStyle(0x666666, 0.5);
+            this.continueButton.fillRoundedRect(width - 200, height - 120, 130, 40, 8);
+            this.continueButtonText.setTint(0x999999);
+        }
     }
 
     // Start displaying dialogue sequence
@@ -202,6 +237,9 @@ class DialogueSystem {
         this.continueButton.setVisible(true);
         this.continueButtonText.setVisible(true);
 
+        // Ensure button is enabled when showing UI
+        this.enableButton();
+
         const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText];
         if (this.portrait) targets.push(this.portrait);
 
@@ -215,6 +253,9 @@ class DialogueSystem {
 
     // Hide dialogue UI elements
     hideDialogueUI() {
+        // Disable button when hiding UI
+        this.disableButton();
+
         const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText];
         if (this.portrait) targets.push(this.portrait);
 
@@ -265,6 +306,7 @@ class DialogueSystem {
     // Animate text typing effect
     animateText(text) {
         this.dialogueText.setText('');
+        this.disableButton(); // Disable button during text animation
 
         let currentChar = 0;
         const textTimer = this.scene.time.addEvent({
@@ -275,6 +317,7 @@ class DialogueSystem {
 
                 if (currentChar > text.length) {
                     textTimer.destroy();
+                    this.enableButton(); // Re-enable button when text is complete
                 }
             },
             repeat: text.length
