@@ -98,12 +98,12 @@ class ResultScene extends Phaser.Scene {
         this.continueButton = this.add.graphics();
         this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
         this.continueButton.lineStyle(3, GameConfig.COLORS.PRIMARY);
-        this.continueButton.fillRoundedRect(width / 2 - 120, height - 120, 240, 60, 15);
-        this.continueButton.strokeRoundedRect(width / 2 - 120, height - 120, 240, 60, 15);
+        this.continueButton.fillRoundedRect(width / 2 - 120, height - 80, 240, 50, 15);
+        this.continueButton.strokeRoundedRect(width / 2 - 120, height - 80, 240, 50, 15);
         this.continueButton.setVisible(false);
 
-        this.continueButtonText = this.add.text(width / 2, height - 90, buttonText, {
-            fontSize: '18px',
+        this.continueButtonText = this.add.text(width / 2, height - 55, buttonText, {
+            fontSize: '16px',
             fill: '#000000',
             fontFamily: 'Arial, sans-serif',
             fontStyle: 'bold'
@@ -113,7 +113,7 @@ class ResultScene extends Phaser.Scene {
 
         // Make button interactive
         this.continueButton.setInteractive(
-            new Phaser.Geom.Rectangle(width / 2 - 120, height - 120, 240, 60),
+            new Phaser.Geom.Rectangle(width / 2 - 120, height - 80, 240, 50),
             Phaser.Geom.Rectangle.Contains
         );
 

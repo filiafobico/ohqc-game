@@ -59,11 +59,11 @@ class QuestionScene extends Phaser.Scene {
         decorations.lineStyle(2, 0xFFD700, 0.4); // Golden border for consistency with theme
 
         // Single elegant border frame
-        decorations.strokeRoundedRect(40, 40, width - 80, height - 80, 15);
+        decorations.strokeRoundedRect(30, 30, width - 60, height - 60, 15);
 
         // Subtle corner accents
         decorations.lineStyle(1, 0xFFD700, 0.6);
-        decorations.strokeRoundedRect(30, 30, width - 60, height - 60, 20);
+        decorations.strokeRoundedRect(20, 20, width - 40, height - 40, 20);
     }
 
     // Create question UI elements
@@ -71,17 +71,17 @@ class QuestionScene extends Phaser.Scene {
         const { width } = this.sys.game.config;
 
         // Level indicator
-        this.levelIndicator = this.add.text(50, 50, `Nível ${this.currentLevel.id}/${this.gameController.getMaxLevels()}`, {
-            fontSize: '16px',
+        this.levelIndicator = this.add.text(40, 40, `Nível ${this.currentLevel.id}/${this.gameController.getMaxLevels()}`, {
+            fontSize: '14px',
             fill: '#ffffff',
             fontFamily: 'Arial, sans-serif',
             backgroundColor: 'rgba(0,0,0,0.7)',
-            padding: { x: 10, y: 5 }
+            padding: { x: 8, y: 4 }
         });
 
         // Problem title
-        this.problemTitle = this.add.text(width / 2, 100, this.currentLevel.title, {
-            fontSize: '28px',
+        this.problemTitle = this.add.text(width / 2, 70, this.currentLevel.title, {
+            fontSize: '24px',
             fill: GameConfig.COLORS.SECONDARY,
             fontFamily: 'Arial, serif',
             fontStyle: 'bold',
@@ -92,7 +92,7 @@ class QuestionScene extends Phaser.Scene {
 
         // Animate UI elements
         this.tweens.add({
-            targets: [this.levelIndicator, this.problemTitle, this.instructions],
+            targets: [this.levelIndicator, this.problemTitle],
             alpha: { from: 0, to: 1 },
             duration: GameConfig.ANIMATIONS.FADE_DURATION,
             ease: 'Power2'

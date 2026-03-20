@@ -23,12 +23,12 @@ class CalculavaGame {
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH,
                 min: {
-                    width: 800,
-                    height: 600
+                    width: 320,
+                    height: 180  // Updated for 16:9 aspect ratio
                 },
                 max: {
-                    width: 1200,
-                    height: 900
+                    width: 1600,  // Reduced from 1920 to match smaller base size
+                    height: 900   // Standard 16:9, reduced from 1080
                 }
             },
             physics: {
