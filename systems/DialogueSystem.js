@@ -9,6 +9,9 @@ class DialogueSystem {
         this.isDisplaying = false;
         this.onComplete = null;
         this.buttonEnabled = true; // Control button state
+        this.isTyping = false;   // Track if text animation is in progress
+        this.fullText = '';      // Full text of current dialogue for skip
+        this.textTimer = null;   // Reference to active typing timer
 
         this.createDialogueUI();
     }
@@ -30,7 +33,7 @@ class DialogueSystem {
 
         // Character name text
         this.nameText = this.scene.add.text(210, height - 230, '', {
-            fontSize: '20px',
+            fontSize: '30px',
             fill: '#d4af37', // Golden color for better contrast on dark background
             fontFamily: 'Arial, serif',
             fontStyle: 'bold'
@@ -39,7 +42,7 @@ class DialogueSystem {
 
         // Dialogue text
         this.dialogueText = this.scene.add.text(210, height - 200, '', {
-            fontSize: '16px',
+            fontSize: '24px',
             fill: '#ffffff',
             fontFamily: 'Arial, sans-serif',
             wordWrap: { width: width - 320, useAdvancedWrap: true },
@@ -299,21 +302,39 @@ class DialogueSystem {
         this.animateText(dialogue.text);
     }
 
+    // Skip active typing animation and show full text immediately
+    skipTyping() {
+        if (this.textTimer) {
+            this.textTimer.destroy();
+            this.textTimer = null;
+        }
+        this.isTyping = false;
+        this.dialogueText.setText(this.fullText);
+    }
+
     // Animate text typing effect
     animateText(text) {
+        this.fullText = text;
         this.dialogueText.setText('');
-        this.disableButton(); // Disable button during text animation
+        this.isTyping = true;
+
+        // Cancel any previous timer
+        if (this.textTimer) {
+            this.textTimer.destroy();
+            this.textTimer = null;
+        }
 
         let currentChar = 0;
-        const textTimer = this.scene.time.addEvent({
+        this.textTimer = this.scene.time.addEvent({
             delay: GameConfig.ANIMATIONS.TEXT_SPEED,
             callback: () => {
                 this.dialogueText.setText(text.substring(0, currentChar));
                 currentChar++;
 
                 if (currentChar > text.length) {
-                    textTimer.destroy();
-                    this.enableButton(); // Re-enable button when text is complete
+                    this.textTimer.destroy();
+                    this.textTimer = null;
+                    this.isTyping = false;
                 }
             },
             repeat: text.length
@@ -333,6 +354,12 @@ class DialogueSystem {
 
     // Move to next dialogue
     nextDialogue() {
+        // If text is still being typed, skip to end first
+        if (this.isTyping) {
+            this.skipTyping();
+            return;
+        }
+
         this.currentDialogueIndex++;
 
         // Prepare the new dialogue (creates portrait)

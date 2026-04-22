@@ -7,14 +7,9 @@
       "backgroundImage": "level_1_bg",
       "characters": ["Hassan", "Beremiz"],
       "story": [
-        { "character": "Hassan", "text": "Beremiz, encontramos três irmãos discutindo no deserto." },
-        { "character": "Hassan", "text": "O pai deixou 35 camelos de herança." },
-        { "character": "Hassan", "text": "O irmão mais velho deve receber a metade." },
-        { "character": "Hassan", "text": "O do meio recebe um terço." },
-        { "character": "Hassan", "text": "O mais novo recebe um nono." },
+        { "character": "Hassan", "text": "Beremiz, encontramos três irmãos discutindo no deserto.\nO pai deixou 35 camelos de herança.\nO irmão mais velho deve receber a metade. O do meio recebe um terço. O mais novo recebe um nono." },
         { "character": "Beremiz", "text": "Mas Hassan, como dividir 35 camelos assim?" },
-        { "character": "Hassan", "text": "Exato! Metade de 35 é 17 e meio. Não se pode dividir um camelo!" },
-        { "character": "Hassan", "text": "Felizmente temos nosso camelo conosco. Talvez isso ajude?" }
+        { "character": "Hassan", "text": "Exato! Metade de 35 é 17 e meio. Não se pode dividir um camelo!\nFelizmente temos nosso camelo conosco. Talvez isso ajude?" }
       ],
       "question": "Como Beremiz conseguiu dividir 35 camelos em 1/2, 1/3 e 1/9 sem cortar nenhum animal?",
       "options": [
@@ -27,9 +22,7 @@
       "explanation": [
         { "character": "Beremiz", "text": "Simples! Vou emprestar um dos nossos camelos." },
         { "character": "Hassan", "text": "Agora temos 36 camelos no total." },
-        { "character": "Beremiz", "text": "O mais velho recebe: 36 ÷ 2 = 18 camelos" },
-        { "character": "Beremiz", "text": "O do meio recebe: 36 ÷ 3 = 12 camelos" },
-        { "character": "Beremiz", "text": "O mais novo recebe: 36 ÷ 9 = 4 camelos" },
+        { "character": "Beremiz", "text": "O mais velho recebe: 36 ÷ 2 = 18 camelos\nO do meio recebe: 36 ÷ 3 = 12 camelos\nO mais novo recebe: 36 ÷ 9 = 4 camelos" },
         { "character": "Hassan", "text": "Incrível! 18 + 12 + 4 = 34 camelos distribuídos." },
         { "character": "Beremiz", "text": "Sobram 2. Devolvemos nosso camelo emprestado e ficamos com 1 de gratidão!" }
       ]
@@ -42,9 +35,7 @@
       "characters": ["Mercador", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "No mercado de Bagdá, um mercador nos procurou." },
-        { "character": "Mercador", "text": "Sábio Beremiz, tenho 60 pérolas preciosas." },
-        { "character": "Mercador", "text": "Quero dividir igualmente entre meus 4 filhos." },
-        { "character": "Mercador", "text": "Mas antes, devo dar 5 pérolas à mesquita." },
+        { "character": "Mercador", "text": "Sábio Beremiz, tenho 60 pérolas preciosas.\nQuero dividir igualmente entre meus 4 filhos.\nMas antes, devo dar 5 pérolas à mesquita." },
         { "character": "Beremiz", "text": "Vamos calcular juntos!" }
       ],
       "question": "Após dar 5 pérolas à mesquita, quantas cada filho receberá?",
@@ -56,10 +47,9 @@
       ],
       "correctIndex": 1,
       "explanation": [
-        { "character": "Beremiz", "text": "Primeiro, separamos as pérolas da mesquita." },
-        { "character": "Beremiz", "text": "60 - 5 = 55 pérolas restam para os filhos." },
+        { "character": "Beremiz", "text": "Primeiro, separamos as pérolas da mesquita.\n60 - 5 = 55 pérolas restam para os filhos." },
         { "character": "Hassan", "text": "Agora dividimos: 55 ÷ 4 = 13 pérolas para cada filho." },
-        { "character": "Mercador", "text": "E as - (13 × 4) = 3 pérolas que sobram?" },
+        { "character": "Mercador", "text": "E as 55 - (13 × 4) = 3 pérolas que sobram?" },
         { "character": "Beremiz", "text": "Essas podem ser guardadas para o futuro ou dadas como esmola." }
       ]
     },
@@ -70,13 +60,9 @@
       "backgroundImage": "level_3_bg",
       "characters": ["Hassan", "Beremiz"],
       "story": [
-        { "character": "Hassan", "text": "Dois viajantes famintos nos encontram no deserto." },
-        { "character": "Hassan", "text": "O primeiro viajante trouxe 3 pães." },
-        { "character": "Hassan", "text": "O segundo viajante trouxe 2 pães." },
+        { "character": "Hassan", "text": "Dois viajantes famintos nos encontram no deserto.\nO primeiro viajante trouxe 3 pães. O segundo viajante trouxe 2 pães." },
         { "character": "Beremiz", "text": "Vamos dividir igualmente os 5 pães entre nós três." },
-        { "character": "Hassan", "text": "Após a refeição, um quarto viajante aparece." },
-        { "character": "Hassan", "text": "Ele paga 5 moedas pelos pães que comemos." },
-        { "character": "Hassan", "text": "Como dividir essas moedas justamente entre quem trouxe os pães?" }
+        { "character": "Hassan", "text": "Após a refeição, um quarto viajante aparece.\nEle paga 5 moedas pelos pães que comemos.\nComo dividir essas moedas justamente entre quem trouxe os pães?" }
       ],
       "question": "Se o terceiro viajante pagou justamente pelos pães que comeu, como dividir as 5 moedas?",
       "options": [
@@ -103,11 +89,8 @@
       "backgroundImage": "level_4_bg",
       "characters": ["Califa", "Poeta", "Beremiz"],
       "story": [
-        { "character": "Hassan", "text": "No palácio real, um poeta apresentou seus versos." },
-        { "character": "Hassan", "text": "Ele compôs um belo poema de 30 versos para o Califa." },
-        { "character": "Califa", "text": "Vou pagar de forma especial: 1 dinar pelo primeiro verso." },
-        { "character": "Califa", "text": "2 dinares pelo segundo verso." },
-        { "character": "Califa", "text": "4 dinares pelo terceiro. Dobrando sempre!" },
+        { "character": "Hassan", "text": "No palácio real, um poeta apresentou seus versos.\nEle compôs um belo poema de 30 versos para o Califa." },
+        { "character": "Califa", "text": "Vou pagar de forma especial: 1 dinar pelo primeiro verso.\n2 dinares pelo segundo verso. 4 dinares pelo terceiro. Dobrando sempre!" },
         { "character": "Poeta", "text": "Sábio Beremiz, quanto receberei no total?" }
       ],
       "question": "Se o pagamento dobra a cada verso (1, 2, 4, 8...), quanto o poeta receberá pelos 30 versos?",
@@ -136,10 +119,7 @@
       "characters": ["Mercador", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "Um mercador nos apresentou um enigma fascinante." },
-        { "character": "Mercador", "text": "Tenho algumas moedas de ouro guardadas." },
-        { "character": "Mercador", "text": "Se as coloco em grupos de 3, sobram sempre 2." },
-        { "character": "Mercador", "text": "Em grupos de 5, sobram sempre 3." },
-        { "character": "Mercador", "text": "Em grupos de 7, sobram sempre 2." },
+        { "character": "Mercador", "text": "Tenho algumas moedas de ouro guardadas.\nSe as coloco em grupos de 3, sobram sempre 2.\nEm grupos de 5, sobram sempre 3. Em grupos de 7, sobram sempre 2." },
         { "character": "Beremiz", "text": "Interessante! Qual o menor número possível?" }
       ],
       "question": "Qual o menor número que sobra 2 ao dividir por 3, sobra 3 ao dividir por 5, e sobra 2 ao dividir por 7?",
@@ -153,9 +133,7 @@
       "explanation": [
         { "character": "Beremiz", "text": "Vamos testar números que deixam os restos corretos." },
         { "character": "Hassan", "text": "Testemos o 23. Vamos verificar:" },
-        { "character": "Beremiz", "text": "23 ÷ 3 = 7 grupos, sobram 2 moedas. ✓" },
-        { "character": "Beremiz", "text": "23 ÷ 5 = 4 grupos, sobram 3 moedas. ✓" },
-        { "character": "Beremiz", "text": "23 ÷ 7 = 3 grupos, sobram 2 moedas. ✓" },
+        { "character": "Beremiz", "text": "23 ÷ 3 = 7 grupos, sobram 2 moedas. ✓\n23 ÷ 5 = 4 grupos, sobram 3 moedas. ✓\n23 ÷ 7 = 3 grupos, sobram 2 moedas. ✓" },
         { "character": "Hassan", "text": "Perfeito! Todas as condições são satisfeitas." },
         { "character": "Mercador", "text": "Incrível! Realmente tenho 23 moedas guardadas!" }
       ]
