@@ -122,14 +122,13 @@ class IntroScene extends Phaser.Scene {
         }
     }
 
-    // Start the game - transition to first level
+    // Start the game - transition to level select
     startGame() {
         // Fade out animation
         this.cameras.main.fadeOut(GameConfig.ANIMATIONS.FADE_DURATION, 0, 0, 0);
 
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-            // Start with first level story scene
-            this.scene.start('StoryScene');
+            this.scene.start('LevelSelectScene');
         });
     }
 }

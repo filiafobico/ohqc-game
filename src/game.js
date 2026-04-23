@@ -15,6 +15,7 @@ class CalculavaGame {
             backgroundColor: GameConfig.COLORS.BACKGROUND,
             scene: [
                 IntroScene,
+                LevelSelectScene,
                 StoryScene,
                 QuestionScene,
                 ResultScene
@@ -95,6 +96,11 @@ class CalculavaGame {
     // Get maximum number of levels
     getMaxLevels() {
         return this.maxLevels;
+    }
+
+    // Set game to a specific level
+    setLevel(id) {
+        this.currentLevel = id;
     }
 
     // Progress to next level
