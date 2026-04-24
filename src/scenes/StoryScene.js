@@ -111,19 +111,69 @@ class StoryScene extends Phaser.Scene {
         this.levelTitle.setOrigin(0.5);
         this.levelTitle.setAlpha(0);
 
-        // Level number indicator
-        this.levelIndicator = this.add.text(50, 50, `Nível ${this.currentLevel.id}/${this.gameController.getMaxLevels()}`, {
+        // Adventure indicator + menu button (top-left)
+        const menuBtnW = 44;
+        const menuBtnH = 36;
+        const menuBtnX = 20;
+        const menuBtnY = 20;
+
+        this.menuButton = this.add.graphics();
+        this.menuButton.fillStyle(0x000000, 0.7);
+        this.menuButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.9);
+        this.menuButton.fillRoundedRect(menuBtnX, menuBtnY, menuBtnW, menuBtnH, 6);
+        this.menuButton.strokeRoundedRect(menuBtnX, menuBtnY, menuBtnW, menuBtnH, 6);
+        this.menuButton.setDepth(20);
+        this.menuButton.setAlpha(0);
+        this.menuButton.setInteractive(
+            new Phaser.Geom.Rectangle(menuBtnX, menuBtnY, menuBtnW, menuBtnH),
+            Phaser.Geom.Rectangle.Contains
+        );
+
+        this.menuButtonText = this.add.text(menuBtnX + menuBtnW / 2, menuBtnY + menuBtnH / 2, '☰', {
+            fontSize: '20px',
+            fill: '#d4af37',
+            fontFamily: 'Arial, sans-serif'
+        }).setOrigin(0.5).setDepth(20).setAlpha(0);
+
+        this.menuButton.on('pointerover', () => {
+            this.input.setDefaultCursor('pointer');
+            this.menuButton.clear();
+            this.menuButton.fillStyle(0x333333, 0.9);
+            this.menuButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 1);
+            this.menuButton.fillRoundedRect(menuBtnX, menuBtnY, menuBtnW, menuBtnH, 6);
+            this.menuButton.strokeRoundedRect(menuBtnX, menuBtnY, menuBtnW, menuBtnH, 6);
+        });
+
+        this.menuButton.on('pointerout', () => {
+            this.input.setDefaultCursor('default');
+            this.menuButton.clear();
+            this.menuButton.fillStyle(0x000000, 0.7);
+            this.menuButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.9);
+            this.menuButton.fillRoundedRect(menuBtnX, menuBtnY, menuBtnW, menuBtnH, 6);
+            this.menuButton.strokeRoundedRect(menuBtnX, menuBtnY, menuBtnW, menuBtnH, 6);
+        });
+
+        this.menuButton.on('pointerdown', () => {
+            this.input.setDefaultCursor('default');
+            this.cameras.main.fadeOut(GameConfig.ANIMATIONS.FADE_DURATION, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+                this.scene.start('LevelSelectScene');
+            });
+        });
+
+        // Adventure number label (right of the menu button)
+        this.levelIndicator = this.add.text(menuBtnX + menuBtnW + 10, menuBtnY + menuBtnH / 2,
+            `Aventura ${this.currentLevel.id}/${this.gameController.getMaxLevels()}`, {
             fontSize: '16px',
             fill: '#ffffff',
             fontFamily: 'Arial, sans-serif',
             backgroundColor: 'rgba(0,0,0,0.7)',
             padding: { x: 10, y: 5 }
-        });
-        this.levelIndicator.setAlpha(0);
+        }).setOrigin(0, 0.5).setDepth(20).setAlpha(0);
 
         // Animate UI elements
         this.tweens.add({
-            targets: [this.levelTitle, this.levelIndicator],
+            targets: [this.levelTitle, this.levelIndicator, this.menuButton, this.menuButtonText],
             alpha: { from: 0, to: 1 },
             duration: GameConfig.ANIMATIONS.FADE_DURATION,
             ease: 'Power2'
@@ -153,7 +203,7 @@ class StoryScene extends Phaser.Scene {
         // Add narrator introduction
         dialogues.push({
             character: 'Hassan',
-            text: `Nível ${this.currentLevel.id}: ${this.currentLevel.title}`
+            text: `Aventura ${this.currentLevel.id}: ${this.currentLevel.title}`
         });
 
         // Add story parts - now using character and text from configuration

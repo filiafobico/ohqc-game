@@ -71,7 +71,7 @@ class QuestionScene extends Phaser.Scene {
         const { width } = this.sys.game.config;
 
         // Level indicator
-        this.levelIndicator = this.add.text(40, 40, `Nível ${this.currentLevel.id}/${this.gameController.getMaxLevels()}`, {
+        this.levelIndicator = this.add.text(40, 40, `Aventura ${this.currentLevel.id}/${this.gameController.getMaxLevels()}`, {
             fontSize: '14px',
             fill: '#ffffff',
             fontFamily: 'Arial, sans-serif',
