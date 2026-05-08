@@ -65,8 +65,9 @@ class QuestionSystem {
     // Create multiple choice option buttons
     createOptionButtons() {
         const { width } = this.scene.sys.game.config;
-        const startY = 215; // Reduced from 360
-        const spacing = 55;  // Increased to fit larger font
+        const startY = 220;
+        const spacing = 64;
+        const btnH = 52;
 
         this.options.forEach((option, index) => {
             const y = startY + (index * spacing);
@@ -75,8 +76,8 @@ class QuestionSystem {
             const button = this.scene.add.graphics();
             button.fillStyle(GameConfig.COLORS.PRIMARY, 0.8);
             button.lineStyle(2, GameConfig.COLORS.SECONDARY);
-            button.fillRoundedRect(80, y - 22, width - 160, 44, 8);
-            button.strokeRoundedRect(80, y - 22, width - 160, 44, 8);
+            button.fillRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
+            button.strokeRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
             button.setAlpha(0);
             this.optionButtons.push(button);
             this.questionElements.push(button);
@@ -95,7 +96,7 @@ class QuestionSystem {
 
             // Make button interactive
             button.setInteractive(
-                new Phaser.Geom.Rectangle(80, y - 22, width - 160, 44),
+                new Phaser.Geom.Rectangle(80, y - btnH / 2, width - 160, btnH),
                 Phaser.Geom.Rectangle.Contains
             );
 
@@ -105,9 +106,8 @@ class QuestionSystem {
                     button.clear();
                     button.fillStyle(GameConfig.COLORS.PRIMARY, 1);
                     button.lineStyle(3, GameConfig.COLORS.SECONDARY);
-                    button.fillRoundedRect(80, y - 22, width - 160, 44, 8);
-                    button.strokeRoundedRect(80, y - 22, width - 160, 44, 8);
-
+                    button.fillRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
+                    button.strokeRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
                     optionText.setScale(GameConfig.ANIMATIONS.BUTTON_HOVER_SCALE);
                 }
             });
@@ -117,9 +117,8 @@ class QuestionSystem {
                     button.clear();
                     button.fillStyle(GameConfig.COLORS.PRIMARY, 0.8);
                     button.lineStyle(2, GameConfig.COLORS.SECONDARY);
-                    button.fillRoundedRect(80, y - 22, width - 160, 44, 8);
-                    button.strokeRoundedRect(80, y - 22, width - 160, 44, 8);
-
+                    button.fillRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
+                    button.strokeRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
                     optionText.setScale(1);
                 }
             });
@@ -152,8 +151,9 @@ class QuestionSystem {
     // Update button visual states after selection
     updateButtonStates() {
         const { width } = this.scene.sys.game.config;
-        const startY = 215;
-        const spacing = 55;
+        const startY = 220;
+        const spacing = 64;
+        const btnH = 52;
 
         this.optionButtons.forEach((button, index) => {
             const y = startY + (index * spacing);
@@ -174,8 +174,8 @@ class QuestionSystem {
                 button.lineStyle(1, GameConfig.COLORS.SECONDARY);
             }
 
-            button.fillRoundedRect(80, y - 22, width - 160, 44, 8);
-            button.strokeRoundedRect(80, y - 22, width - 160, 44, 8);
+            button.fillRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
+            button.strokeRoundedRect(80, y - btnH / 2, width - 160, btnH, 10);
 
             // Reset text scale
             this.optionTexts[index].setScale(1);

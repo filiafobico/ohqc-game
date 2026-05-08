@@ -24,14 +24,18 @@ class CalculavaGame {
             scale: {
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH,
+                parent: 'game-container',
+                width: GameConfig.WIDTH,
+                height: GameConfig.HEIGHT,
                 min: {
                     width: 320,
-                    height: 180  // Updated for 16:9 aspect ratio
+                    height: 180
                 },
                 max: {
-                    width: 1600,  // Reduced from 1920 to match smaller base size
-                    height: 900   // Standard 16:9, reduced from 1080
-                }
+                    width: 1920,
+                    height: 1080
+                },
+                expandParent: false
             },
             physics: {
                 default: 'arcade',

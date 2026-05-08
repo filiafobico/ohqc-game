@@ -50,19 +50,19 @@ class DialogueSystem {
         });
         this.dialogueText.setVisible(false);
 
-        // Continue button — below the dialogue box (box bottom = height-70)
+        // Continue button — below the dialogue box
         this.continueButton = this.scene.add.graphics();
         this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
-        this.continueButton.fillRoundedRect(width - 200, height - 62, 130, 44, 8);
+        this.continueButton.fillRoundedRect(width - 210, height - 66, 150, 54, 8);
         this.continueButton.setVisible(false);
         this.continueButton.setDepth(10);
         this.continueButton.setInteractive(
-            new Phaser.Geom.Rectangle(width - 200, height - 62, 130, 44),
+            new Phaser.Geom.Rectangle(width - 210, height - 66, 150, 54),
             Phaser.Geom.Rectangle.Contains
         );
 
-        this.continueButtonText = this.scene.add.text(width - 135, height - 40, 'Continuar', {
-            fontSize: '14px',
+        this.continueButtonText = this.scene.add.text(width - 135, height - 39, 'Continuar', {
+            fontSize: '16px',
             fill: '#000000',
             fontFamily: 'Arial, sans-serif',
             fontStyle: 'bold'
@@ -75,17 +75,17 @@ class DialogueSystem {
         this.backButton = this.scene.add.graphics();
         this.backButton.fillStyle(0x333333, 0.9);
         this.backButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.8);
-        this.backButton.fillRoundedRect(70, height - 62, 130, 44, 8);
-        this.backButton.strokeRoundedRect(70, height - 62, 130, 44, 8);
+        this.backButton.fillRoundedRect(60, height - 66, 150, 54, 8);
+        this.backButton.strokeRoundedRect(60, height - 66, 150, 54, 8);
         this.backButton.setVisible(false);
         this.backButton.setDepth(10);
         this.backButton.setInteractive(
-            new Phaser.Geom.Rectangle(70, height - 62, 130, 44),
+            new Phaser.Geom.Rectangle(60, height - 66, 150, 54),
             Phaser.Geom.Rectangle.Contains
         );
 
-        this.backButtonText = this.scene.add.text(135, height - 40, '← Voltar', {
-            fontSize: '14px',
+        this.backButtonText = this.scene.add.text(135, height - 39, '← Voltar', {
+            fontSize: '16px',
             fill: '#d4af37',
             fontFamily: 'Arial, sans-serif',
             fontStyle: 'bold'
@@ -98,16 +98,16 @@ class DialogueSystem {
             this.backButton.clear();
             this.backButton.fillStyle(0x555555, 0.9);
             this.backButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 1);
-            this.backButton.fillRoundedRect(70, height - 62, 130, 44, 8);
-            this.backButton.strokeRoundedRect(70, height - 62, 130, 44, 8);
+            this.backButton.fillRoundedRect(60, height - 66, 150, 54, 8);
+            this.backButton.strokeRoundedRect(60, height - 66, 150, 54, 8);
         });
 
         this.backButton.on('pointerout', () => {
             this.backButton.clear();
             this.backButton.fillStyle(0x333333, 0.9);
             this.backButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.8);
-            this.backButton.fillRoundedRect(70, height - 62, 130, 44, 8);
-            this.backButton.strokeRoundedRect(70, height - 62, 130, 44, 8);
+            this.backButton.fillRoundedRect(60, height - 66, 150, 54, 8);
+            this.backButton.strokeRoundedRect(60, height - 66, 150, 54, 8);
         });
 
         this.backButton.on('pointerdown', () => {
@@ -115,7 +115,7 @@ class DialogueSystem {
         });
 
         // Exit button (top-right corner, shows during dialogue)
-        const exitW = 54, exitH = 36, exitX = width - 20 - exitW, exitY = 20;
+        const exitW = 64, exitH = 50, exitX = width - 20 - exitW, exitY = 14;
         this.exitButton = this.scene.add.graphics();
         this.exitButton.fillStyle(0x000000, 0.7);
         this.exitButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.9);
@@ -162,7 +162,7 @@ class DialogueSystem {
             if (this.buttonEnabled) {
                 this.continueButton.clear();
                 this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 0.8);
-                this.continueButton.fillRoundedRect(width - 200, height - 62, 130, 44, 8);
+                this.continueButton.fillRoundedRect(width - 210, height - 66, 150, 54, 8);
             }
         });
 
@@ -170,7 +170,7 @@ class DialogueSystem {
             if (this.buttonEnabled) {
                 this.continueButton.clear();
                 this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
-                this.continueButton.fillRoundedRect(width - 200, height - 62, 130, 44, 8);
+                this.continueButton.fillRoundedRect(width - 210, height - 66, 150, 54, 8);
             }
         });
 
@@ -200,12 +200,12 @@ class DialogueSystem {
         if (this.buttonEnabled) {
             // Enabled state - normal colors
             this.continueButton.fillStyle(GameConfig.COLORS.SECONDARY, 1);
-            this.continueButton.fillRoundedRect(width - 200, height - 62, 130, 44, 8);
+            this.continueButton.fillRoundedRect(width - 210, height - 66, 150, 54, 8);
             this.continueButtonText.setTint(0x000000);
         } else {
             // Disabled state - grayed out
             this.continueButton.fillStyle(0x666666, 0.5);
-            this.continueButton.fillRoundedRect(width - 200, height - 62, 130, 44, 8);
+            this.continueButton.fillRoundedRect(width - 210, height - 66, 150, 54, 8);
             this.continueButtonText.setTint(0x999999);
         }
     }
