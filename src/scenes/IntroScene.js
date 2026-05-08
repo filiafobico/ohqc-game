@@ -14,7 +14,6 @@ class IntroScene extends Phaser.Scene {
         this.load.image('mercador-portrait', 'assets/mercador_portrait.png');
         this.load.image('califa-portrait', 'assets/califa_portrait.png');
         this.load.image('poeta-portrait', 'assets/poeta_portrait.png');
-        this.load.image('sabio-portrait', 'assets/sabio_portrait.png');
         this.load.image('vendedor-portrait', 'assets/vendedor_portrait.png');
         this.load.image('oleiro-portrait', 'assets/oleiro-portrait.png');
         this.load.image('raja-portrait', 'assets/raja-portrait.png');
@@ -119,7 +118,7 @@ class IntroScene extends Phaser.Scene {
         });
 
         // Credits button — invisible hit area matching image position
-        const credits_params = [width / 2 - 400, height / 2 + 60, 230, 55];
+        const credits_params = [width / 2 - 350, height / 2 + 60, 230, 55];
         const creditsButton = this.add.graphics();
         creditsButton.fillStyle(0x000000, 0);
         creditsButton.fillRect(...credits_params);

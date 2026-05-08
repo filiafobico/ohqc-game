@@ -42,10 +42,10 @@ class CreditsScene extends Phaser.Scene {
 
         const entries = [
             { label: 'Projeto de Extensão', value: 'Pegaí Leituras Grátis' },
-            { label: 'Orientação', value: 'Professora Diolete Cerutti' },
+            { label: 'Orientação', value: 'Dra. Diolete Marcante Lati Cerutti' },
             { label: 'Desenvolvimento', value: 'Luiç Oliveira' },
-            { label: 'Curso', value: 'Bacharelado em Matemática Aplicada' },
             { label: 'Baseado na obra', value: '"O Homem que Calculava" — Malba Tahan' },
+            { label: 'UEPG', value: 'Universidade Estadual de Ponta Grossa' },
         ];
 
         entries.forEach((entry, i) => {

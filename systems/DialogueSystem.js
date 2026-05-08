@@ -282,7 +282,6 @@ class DialogueSystem {
             'mercador': 'mercador-portrait',
             'califa': 'califa-portrait',
             'poeta': 'poeta-portrait',
-            'sabio': 'sabio-portrait',
             'vendedor': 'vendedor-portrait',
             'oleiro': 'oleiro-portrait',
             'raja': 'raja-portrait',
