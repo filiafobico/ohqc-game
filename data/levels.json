@@ -137,6 +137,144 @@
         { "character": "Hassan", "text": "Perfeito! Todas as condições são satisfeitas." },
         { "character": "Mercador", "text": "Incrível! Realmente tenho 23 moedas guardadas!" }
       ]
+    },
+    {
+      "id": 6,
+      "title": "As 8 oitavas de vinho",
+      "background": "level_6_bg",
+      "backgroundImage": "level_6_bg",
+      "characters": ["Hassan", "Vendedor", "Beremiz"],
+      "story": [
+        { "character": "Hassan", "text": "Em uma taverna de Bagdá, um vendedor precisava de nossa ajuda." },
+        { "character": "Vendedor", "text": "Tenho um barril com 8 oitavas de vinho e preciso dividí-lo igualmente entre dois clientes.\nSó tenho três vasilhas: uma de 8, uma de 5 e uma de 3 oitavas." },
+        { "character": "Beremiz", "text": "Um desafio clássico de medição! Quantos transvasamentos são necessários?" }
+      ],
+      "question": "Usando apenas as vasilhas de 8, 5 e 3 oitavas, qual o número mínimo de transvasamentos para separar o vinho em dois grupos de 4 oitavas?",
+      "options": [
+        "5 transvasamentos",
+        "7 transvasamentos",
+        "9 transvasamentos",
+        "Não é possível dividir"
+      ],
+      "correctIndex": 1,
+      "explanation": [
+        { "character": "Beremiz", "text": "Vamos acompanhar cada passo. Começamos com (8, 0, 0) nas vasilhas de 8, 5 e 3." },
+        { "character": "Hassan", "text": "Passo 1: enche a de 5 pela de 8 → (3, 5, 0)\nPasso 2: enche a de 3 pela de 5 → (3, 2, 3)" },
+        { "character": "Beremiz", "text": "Passo 3: despeja a de 3 na de 8 → (6, 2, 0)\nPasso 4: despeja a de 5 na de 3 → (6, 0, 2)" },
+        { "character": "Hassan", "text": "Passo 5: enche a de 5 pela de 8 → (1, 5, 2)\nPasso 6: completa a de 3 pela de 5 → (1, 4, 3)" },
+        { "character": "Beremiz", "text": "Passo 7: despeja a de 3 na de 8 → (4, 4, 0)" },
+        { "character": "Vendedor", "text": "7 transvasamentos e cada cliente recebe exatamente 4 oitavas. Obrigado, Beremiz!" }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Os 21 vasos preciosos",
+      "background": "level_7_bg",
+      "backgroundImage": "level_7_bg",
+      "characters": ["Hassan", "Oleiro", "Beremiz"],
+      "story": [
+        { "character": "Hassan", "text": "Um ancioso em seu leito de morte chamou Beremiz para resolver sua última vontade." },
+        { "character": "Oleiro", "text": "Tenho 21 vasos para meus três filhos: 7 estão cheios de azeite, 7 estão pela metade e 7 estão vazios.\nCada filho deve receber o mesmo número de vasos e a mesma quantidade de azeite.\nA condição é que não se pode transvasar o azeite de um vaso para outro!" },
+        { "character": "Beremiz", "text": "Que belo desafio! Qual distribuição atende a todas as condições?" }
+      ],
+      "question": "Como dividir 21 vasos (7 cheios, 7 meio-cheios, 7 vazios) igualmente entre 3 filhos, com o mesmo número de vasos e mesma quantidade de azeite cada?",
+      "options": [
+        "Filho 1: 7/0/0 | Filho 2: 0/7/0 | Filho 3: 0/0/7",
+        "Filho 1: 3/1/3 | Filho 2: 3/1/3 | Filho 3: 1/5/1",
+        "Filho 1: 4/1/2 | Filho 2: 2/1/4 | Filho 3: 1/5/1",
+        "Filho 1: 5/1/1 | Filho 2: 1/5/1 | Filho 3: 1/1/5"
+      ],
+      "correctIndex": 1,
+      "explanation": [
+        { "character": "Beremiz", "text": "O total de azeite é: 7 cheios + 7 × ½ = 10,5 unidades.\nCada filho deve receber 10,5 ÷ 3 = 3,5 unidades de azeite." },
+        { "character": "Hassan", "text": "Cada filho também deve receber 21 ÷ 3 = 7 vasos." },
+        { "character": "Beremiz", "text": "Filho 1: 3 cheios + 1 meio + 3 vazios = 7 vasos, azeite = 3 + 0,5 = 3,5 ✓\nFilho 2: mesma distribuição = 3,5 ✓\nFilho 3: 1 cheio + 5 meios + 1 vazio = 7 vasos, azeite = 1 + 2,5 = 3,5 ✓" },
+        { "character": "Oleiro", "text": "Justo e equilibrado, sem derramar uma gota! Que sabedoria, Beremiz!" }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "O tabuleiro de xadrez",
+      "background": "level_8_bg",
+      "backgroundImage": "level_8_bg",
+      "characters": ["Hassan", "Raja", "Inventor", "Beremiz"],
+      "story": [
+        { "character": "Hassan", "text": "No grande palácio de um Rajá indiano, um inventor apresentou o maravilhoso jogo de xadrez." },
+        { "character": "Raja", "text": "Que jogo incrível! Como posso recompensá-lo, sábio inventor?" },
+        { "character": "Inventor", "text": "Peço apenas alguns grãos de trigo: 1 grão na primeira casa do tabuleiro, 2 na segunda, 4 na terceira, dobrando até a 64ª casa." },
+        { "character": "Raja", "text": "Isso parece pouco para tamanha invenção! Aceito sem hesitar." },
+        { "character": "Beremiz", "text": "O Rajá não imagina o que acabou de prometer..." }
+      ],
+      "question": "Quantos grãos de trigo ao todo o inventor receberia pelas 64 casas do tabuleiro?",
+      "options": [
+        "18.446.744.073.709.551.615 grãos",
+        "4.294.967.295 grãos",
+        "1.152.921.504.606.846.975 grãos",
+        "4.096 grãos"
+      ],
+      "correctIndex": 0,
+      "explanation": [
+        { "character": "Beremiz", "text": "Cada casa tem o dobro da anterior: 1, 2, 4, 8... é uma progressão geométrica de razão 2." },
+        { "character": "Hassan", "text": "A soma de uma PG é: S = a₁ × (rⁿ - 1) ÷ (r - 1)\nAqui: S = 1 × (2⁶⁴ - 1) ÷ 1 = 2⁶⁴ - 1" },
+        { "character": "Beremiz", "text": "2⁶⁴ = 18.446.744.073.709.551.616\nLogo, 2⁶⁴ - 1 = 18.446.744.073.709.551.615 grãos!" },
+        { "character": "Raja", "text": "Isso é... impossível de pagar! Essa quantidade encheria todos os celeiros do mundo!" },
+        { "character": "Inventor", "text": "Exatamente. O poder da doubração é incompreensível para a mente humana." }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "A idade do Califa",
+      "background": "level_9_bg",
+      "backgroundImage": "level_9_bg",
+      "characters": ["Hassan", "Califa", "Vizir", "Beremiz"],
+      "story": [
+        { "character": "Hassan", "text": "No palácio, o Califa desafiou Beremiz com um enigma sobre idades." },
+        { "character": "Califa", "text": "A soma da minha idade com a do meu Vizir é 63 anos.\nAlém disso, minha idade atual é o dobro da idade que meu Vizir tinha quando eu tinha a idade atual dele." },
+        { "character": "Vizir", "text": "Sábio Beremiz, consegue descobrir nossas idades?" },
+        { "character": "Beremiz", "text": "Um elegante sistema de equações! Deixe-me pensar..." }
+      ],
+      "question": "A soma das idades do Califa (C) e do Vizir (V) é 63. O Califa tem o dobro da idade que o Vizir tinha quando o Califa tinha a idade atual do Vizir. Qual a idade do Califa?",
+      "options": [
+        "36 anos",
+        "42 anos",
+        "28 anos",
+        "40 anos"
+      ],
+      "correctIndex": 0,
+      "explanation": [
+        { "character": "Beremiz", "text": "Sejam C a idade do Califa e V a do Vizir. Temos: C + V = 63." },
+        { "character": "Hassan", "text": "Quando o Califa tinha V anos, faz (C - V) anos. Nessa época, o Vizir tinha V - (C - V) = 2V - C anos." },
+        { "character": "Beremiz", "text": "A condição diz: C = 2 × (2V - C)\nC = 4V - 2C\n3C = 4V\nDe C + V = 63 e 3C = 4V:\nSubstituindo: C = 4V/3 → 4V/3 + V = 63 → 7V/3 = 63 → V = 27\nPortanto C = 36." },
+        { "character": "Califa", "text": "Extraordinário! Tenho 36 anos e meu Vizir tem 27. Verificação: 36 = 2 × 18, pois quando eu tinha 27, ele tinha 18. ✓" }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Os 7 véus da princesa",
+      "background": "level_10_bg",
+      "backgroundImage": "level_10_bg",
+      "characters": ["Hassan", "Princesa", "Pretendente", "Beremiz"],
+      "story": [
+        { "character": "Hassan", "text": "A bela princesa Telassim propôs um desafio matemático a todos os pretendentes ao seu coração." },
+        { "character": "Princesa", "text": "Peço que pensem em um número secreto. Multipliquem por 3, somem 15, dividam por 3 e subtraiam 5.\nDigam-me o resultado final... e eu revelarei o número original!" },
+        { "character": "Pretendente", "text": "Impossível! Nenhum mágico conseguiria isso.\nPensei no número 12 e obtive... 12! Como pode ser?" },
+        { "character": "Beremiz", "text": "A princesa usa matemática, não magia. Mas qual é o segredo?" }
+      ],
+      "question": "Se a princesa pede para pensar em um número, multiplicar por 3, somar 15, dividir por 3 e subtrair 5, qual é sempre o resultado final?",
+      "options": [
+        "O triplo do número pensado",
+        "O número pensado somado a 5",
+        "O próprio número pensado",
+        "O número pensado dividido por 3"
+      ],
+      "correctIndex": 2,
+      "explanation": [
+        { "character": "Beremiz", "text": "Chamemos o número pensado de n. Vamos acompanhar cada operação:" },
+        { "character": "Hassan", "text": "Multiplicar por 3: n × 3 = 3n\nSomar 15: 3n + 15\nDividir por 3: (3n + 15) ÷ 3 = n + 5" },
+        { "character": "Beremiz", "text": "Subtrair 5: n + 5 - 5 = n\nO resultado é sempre o próprio número pensado!" },
+        { "character": "Princesa", "text": "Qualquer número que você escolha, a resposta será ele mesmo. Por isso, quando você me diz o resultado, eu já sei o número original!" },
+        { "character": "Pretendente", "text": "Que sabedoria! Minha princesa, a matemática de seu coração é mais encantadora que qualquer magia." }
+      ]
     }
   ]
 }
