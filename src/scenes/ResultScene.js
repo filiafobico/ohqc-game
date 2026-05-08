@@ -28,9 +28,27 @@ class ResultScene extends Phaser.Scene {
 
         // Create scene
         this.createBackground();
+        this.saveProgress();
         this.createUI();
         this.setupDialogueSystem();
         this.showResults();
+    }
+
+    // Save level completion to localStorage
+    saveProgress() {
+        const key = 'calculava_progress';
+        let progress = {};
+        try {
+            progress = JSON.parse(localStorage.getItem(key) || '{}');
+        } catch (e) { progress = {}; }
+
+        const levelId = String(this.currentLevel.id);
+        // Only upgrade: if already 'correct', keep it even if now wrong
+        if (this.questionResult.isCorrect || progress[levelId] !== 'correct') {
+            progress[levelId] = this.questionResult.isCorrect ? 'correct' : 'incorrect';
+        }
+
+        localStorage.setItem(key, JSON.stringify(progress));
     }
 
     // Create result scene background

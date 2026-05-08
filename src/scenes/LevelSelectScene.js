@@ -53,6 +53,12 @@ class LevelSelectScene extends Phaser.Scene {
         const { width } = this.sys.game.config;
         const levels = this.gameController?.gameData?.levels || [];
 
+        // Load saved progress
+        let progress = {};
+        try {
+            progress = JSON.parse(localStorage.getItem('calculava_progress') || '{}');
+        } catch (e) { progress = {}; }
+
         // 2-column grid: levels 1-5 left, 6-10 right
         const marginX = 50;
         const colGap  = 20;
@@ -66,11 +72,11 @@ class LevelSelectScene extends Phaser.Scene {
             const row = index % 5;
             const x   = marginX + col * (colW + colGap);
             const y   = startY + row * (buttonH + rowGap);
-            this.createLevelButton(level, x, y, colW, buttonH);
+            this.createLevelButton(level, x, y, colW, buttonH, progress[String(level.id)]);
         });
     }
 
-    createLevelButton(level, x, y, w, h) {
+    createLevelButton(level, x, y, w, h, completionStatus) {
         const bgKey = level.backgroundImage || level.background;
 
         // Background thumbnail image clipped to button shape
@@ -88,25 +94,43 @@ class LevelSelectScene extends Phaser.Scene {
             fallback.fillRoundedRect(x, y, w, h, 8);
         }
 
-        // Dark overlay so text stays readable
+        // Dark overlay — lighter if completed
+        const overlayAlpha = completionStatus ? 0.30 : 0.52;
         const overlay = this.add.graphics();
-        overlay.fillStyle(0x000000, 0.52);
+        overlay.fillStyle(0x000000, overlayAlpha);
         overlay.fillRoundedRect(x, y, w, h, 8);
 
-        // Golden border
+        // Colored tint strip on left edge based on completion
+        if (completionStatus) {
+            const stripColor = completionStatus === 'correct' ? 0x22cc55 : 0xcc4422;
+            const strip = this.add.graphics();
+            strip.fillStyle(stripColor, 0.85);
+            strip.fillRoundedRect(x, y, 6, h, { tl: 8, bl: 8, tr: 0, br: 0 });
+        }
+
+        // Border — green/red/gold depending on status
+        const borderColor = completionStatus === 'correct'  ? 0x22cc55
+                          : completionStatus === 'incorrect' ? 0xcc4422
+                          : GameConfig.COLORS.SECONDARY;
         const border = this.add.graphics();
-        border.lineStyle(2, GameConfig.COLORS.SECONDARY, 1);
+        border.lineStyle(completionStatus ? 3 : 2, borderColor, 1);
         border.strokeRoundedRect(x, y, w, h, 8);
 
-        // Level number badge (golden circle)
+        // Level number badge — green check / red x / gold number
         const badgeR  = 22;
         const badgeCX = x + 32;
         const badgeCY = y + h / 2;
         const badge = this.add.graphics();
-        badge.fillStyle(GameConfig.COLORS.SECONDARY, 1);
+        const badgeColor = completionStatus === 'correct'  ? 0x22cc55
+                         : completionStatus === 'incorrect' ? 0xcc4422
+                         : GameConfig.COLORS.SECONDARY;
+        badge.fillStyle(badgeColor, 1);
         badge.fillCircle(badgeCX, badgeCY, badgeR);
 
-        this.add.text(badgeCX, badgeCY, String(level.id), {
+        const badgeLabel = completionStatus === 'correct'  ? '✓'
+                         : completionStatus === 'incorrect' ? '✗'
+                         : String(level.id);
+        this.add.text(badgeCX, badgeCY, badgeLabel, {
             fontSize: '20px',
             fill: '#000000',
             fontFamily: 'Arial, serif',
@@ -135,20 +159,20 @@ class LevelSelectScene extends Phaser.Scene {
 
         hit.on('pointerover', () => {
             overlay.clear();
-            overlay.fillStyle(0x000000, 0.28);
+            overlay.fillStyle(0x000000, 0.18);
             overlay.fillRoundedRect(x, y, w, h, 8);
             border.clear();
-            border.lineStyle(3, GameConfig.COLORS.SECONDARY, 1);
+            border.lineStyle(completionStatus ? 4 : 3, borderColor, 1);
             border.strokeRoundedRect(x, y, w, h, 8);
             this.input.setDefaultCursor('pointer');
         });
 
         hit.on('pointerout', () => {
             overlay.clear();
-            overlay.fillStyle(0x000000, 0.52);
+            overlay.fillStyle(0x000000, overlayAlpha);
             overlay.fillRoundedRect(x, y, w, h, 8);
             border.clear();
-            border.lineStyle(2, GameConfig.COLORS.SECONDARY, 1);
+            border.lineStyle(completionStatus ? 3 : 2, borderColor, 1);
             border.strokeRoundedRect(x, y, w, h, 8);
             this.input.setDefaultCursor('default');
         });
