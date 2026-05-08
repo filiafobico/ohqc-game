@@ -2,13 +2,15 @@
 // Initialize the game when the page loads
 
 window.addEventListener('load', () => {
-    // Wait a bit for all scripts to load
+
+    // Wait longer for all scripts to load, especially on slower connections
     setTimeout(() => {
         initializeGame();
-    }, 100);
+    }, 500);
 });
 
 function initializeGame() {
+
     // Hide loading message
     const loading = document.getElementById('loading');
     if (loading) {
@@ -18,27 +20,43 @@ function initializeGame() {
     // Check if Phaser is loaded
     if (typeof Phaser === 'undefined') {
         console.error('Phaser.js não foi carregado!');
-        document.getElementById('game-container').innerHTML = '<div class="loading">Erro: Phaser.js não carregado</div>';
+        document.getElementById('game-container').innerHTML = '<div class="loading">Erro: Phaser.js não carregado. Tente recarregar a página.</div>';
+        return;
+    }
+
+    // Simple check for main class
+    if (typeof CalculavaGame === 'undefined') {
+        console.error('CalculavaGame não foi carregada!');
+        document.getElementById('game-container').innerHTML =
+            '<div class="loading">Erro: CalculavaGame não foi carregada.<br><br>' +
+            'Tente:<br>' +
+            '1. Recarregar a página (Ctrl+F5)<br>' +
+            '2. Verificar se todos os arquivos estão no lugar correto<br>' +
+            '3. Usar <a href="index-debug.html" style="color: #d4af37;">modo debug</a> para mais informações</div>';
         return;
     }
 
     try {
-        // Start the game - this will fail if classes aren't loaded
+        // Start the game
         const game = new CalculavaGame();
 
         // Global reference for debugging
         window.game = game;
     } catch (error) {
-        console.error('Erro ao iniciar o jogo:', error);
+        console.error('❌ Erro ao iniciar o jogo:', error);
+        console.error('Stack trace:', error.stack);
 
         // Show more detailed error message
-        let errorMsg = 'Erro ao iniciar o jogo: ' + error.message;
-        if (error.message.includes('CalculavaGame is not defined')) {
-            errorMsg = 'Erro: Classe CalculavaGame não foi carregada. Verifique se o arquivo src/game.js está sendo carregado corretamente.';
-        } else if (error.message.includes('Scene is not defined')) {
-            errorMsg = 'Erro: Uma ou mais cenas do jogo não foram carregadas. Verifique os arquivos em src/scenes/.';
+        let errorMsg = '❌ Erro ao iniciar o jogo: ' + error.message + '<br><br>';
+
+        if (error.message.includes('is not defined')) {
+            errorMsg += 'Uma classe necessária não foi carregada.<br>';
+            errorMsg += 'Tente recarregar a página (Ctrl+F5).<br><br>';
         }
 
-        document.getElementById('game-container').innerHTML = '<div class="loading">' + errorMsg + '</div>';
+        errorMsg += '<a href="index-debug.html" style="color: #d4af37;">🔍 Usar modo debug</a> para mais detalhes.<br>';
+        errorMsg += 'Abra o console do navegador (F12) para ver o erro completo.';
+
+        document.getElementById('game-container').innerHTML = '<div class="loading" style="color: #ff4500;">' + errorMsg + '</div>';
     }
 }

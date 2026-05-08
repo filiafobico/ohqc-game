@@ -15,6 +15,7 @@ class CalculavaGame {
             backgroundColor: GameConfig.COLORS.BACKGROUND,
             scene: [
                 IntroScene,
+                CreditsScene,
                 LevelSelectScene,
                 StoryScene,
                 QuestionScene,

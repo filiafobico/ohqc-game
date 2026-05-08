@@ -15,6 +15,13 @@ class IntroScene extends Phaser.Scene {
         this.load.image('califa-portrait', 'assets/califa_portrait.png');
         this.load.image('poeta-portrait', 'assets/poeta_portrait.png');
         this.load.image('sabio-portrait', 'assets/sabio_portrait.png');
+        this.load.image('vendedor-portrait', 'assets/vendedor_portrait.png');
+        this.load.image('oleiro-portrait', 'assets/oleiro-portrait.png');
+        this.load.image('raja-portrait', 'assets/raja-portrait.png');
+        this.load.image('inventor-portrait', 'assets/inventor-portrait.png');
+        this.load.image('vizir-portrait', 'assets/vizir-portrait.png');
+        this.load.image('princesa-portrait', 'assets/princesa-portrait.png');
+        this.load.image('pretendente-portrait', 'assets/pretendente-portrait.png');
 
         // Load background images
         this.load.image('level_1_bg', 'assets/level_1_bg.png');
@@ -22,6 +29,11 @@ class IntroScene extends Phaser.Scene {
         this.load.image('level_3_bg', 'assets/level_3_bg.png');
         this.load.image('level_4_bg', 'assets/level_4_bg.png');
         this.load.image('level_5_bg', 'assets/level_5_bg.png');
+        this.load.image('level_6_bg', 'assets/level_6_bg.png');
+        this.load.image('level_7_bg', 'assets/level_7_bg.png');
+        this.load.image('level_8_bg', 'assets/level_8_bg.png');
+        this.load.image('level_9_bg', 'assets/level_9_bg.png');
+        this.load.image('level_10_bg', 'assets/level_10_bg.png');
 
         // Load result background images
         this.load.image('success', 'assets/success.png');
@@ -81,15 +93,15 @@ class IntroScene extends Phaser.Scene {
     // Create intro UI elements - minimal interface since image contains the visuals
     createIntroUI() {
         const { width, height } = this.sys.game.config;
-
+        const button_params = [width / 2 - 400, height / 2 - 20, 350, 60];
         // Only create start button as invisible clickable area - image provides the visual button
         const startButton = this.add.graphics();
         startButton.fillStyle(0x000000, 0); // Transparent
-        startButton.fillRect(width / 2 - 320, height / 2 + 40, 210, 60); // Adjust position to match image button
+        startButton.fillRect(...button_params); // Adjust position to match image button
 
         // Make button interactive
         startButton.setInteractive(
-            new Phaser.Geom.Rectangle(width / 2 - 320, height / 2 + 40, 210, 60),
+            new Phaser.Geom.Rectangle(...button_params),
             Phaser.Geom.Rectangle.Contains
         );
 
@@ -98,12 +110,37 @@ class IntroScene extends Phaser.Scene {
             this.startGame();
         });
 
-        // Optional: Add hover effect to indicate clickable area (for testing)
         startButton.on('pointerover', () => {
             this.input.setDefaultCursor('pointer');
         });
 
         startButton.on('pointerout', () => {
+            this.input.setDefaultCursor('default');
+        });
+
+        // Credits button — invisible hit area matching image position
+        const credits_params = [width / 2 - 400, height / 2 + 60, 230, 55];
+        const creditsButton = this.add.graphics();
+        creditsButton.fillStyle(0x000000, 0);
+        creditsButton.fillRect(...credits_params);
+
+        creditsButton.setInteractive(
+            new Phaser.Geom.Rectangle(...credits_params),
+            Phaser.Geom.Rectangle.Contains
+        );
+
+        creditsButton.on('pointerdown', () => {
+            this.cameras.main.fadeOut(GameConfig.ANIMATIONS.FADE_DURATION, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+                this.scene.start('CreditsScene');
+            });
+        });
+
+        creditsButton.on('pointerover', () => {
+            this.input.setDefaultCursor('pointer');
+        });
+
+        creditsButton.on('pointerout', () => {
             this.input.setDefaultCursor('default');
         });
     }

@@ -33,7 +33,7 @@ class DialogueSystem {
 
         // Character name text
         this.nameText = this.scene.add.text(210, height - 230, '', {
-            fontSize: '30px',
+            fontSize: '22px',
             fill: '#d4af37', // Golden color for better contrast on dark background
             fontFamily: 'Arial, serif',
             fontStyle: 'bold'
@@ -42,7 +42,7 @@ class DialogueSystem {
 
         // Dialogue text
         this.dialogueText = this.scene.add.text(210, height - 200, '', {
-            fontSize: '24px',
+            fontSize: '20px',
             fill: '#ffffff',
             fontFamily: 'Arial, sans-serif',
             wordWrap: { width: width - 320, useAdvancedWrap: true },
@@ -112,6 +112,49 @@ class DialogueSystem {
 
         this.backButton.on('pointerdown', () => {
             this.previousDialogue();
+        });
+
+        // Exit button (top-right corner, shows during dialogue)
+        const exitW = 54, exitH = 36, exitX = width - 20 - exitW, exitY = 20;
+        this.exitButton = this.scene.add.graphics();
+        this.exitButton.fillStyle(0x000000, 0.7);
+        this.exitButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.9);
+        this.exitButton.fillRoundedRect(exitX, exitY, exitW, exitH, 6);
+        this.exitButton.strokeRoundedRect(exitX, exitY, exitW, exitH, 6);
+        this.exitButton.setVisible(false).setDepth(30);
+        this.exitButton.setInteractive(
+            new Phaser.Geom.Rectangle(exitX, exitY, exitW, exitH),
+            Phaser.Geom.Rectangle.Contains
+        );
+
+        this.exitButtonText = this.scene.add.text(exitX + exitW / 2, exitY + exitH / 2, '⏻', {
+            fontSize: '20px',
+            fill: '#d4af37',
+            fontFamily: 'Arial, sans-serif'
+        }).setOrigin(0.5).setVisible(false).setDepth(30);
+
+        this.exitButton.on('pointerover', () => {
+            this.scene.input.setDefaultCursor('pointer');
+            this.exitButton.clear();
+            this.exitButton.fillStyle(0x333333, 0.9);
+            this.exitButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 1);
+            this.exitButton.fillRoundedRect(exitX, exitY, exitW, exitH, 6);
+            this.exitButton.strokeRoundedRect(exitX, exitY, exitW, exitH, 6);
+        });
+        this.exitButton.on('pointerout', () => {
+            this.scene.input.setDefaultCursor('default');
+            this.exitButton.clear();
+            this.exitButton.fillStyle(0x000000, 0.7);
+            this.exitButton.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.9);
+            this.exitButton.fillRoundedRect(exitX, exitY, exitW, exitH, 6);
+            this.exitButton.strokeRoundedRect(exitX, exitY, exitW, exitH, 6);
+        });
+        this.exitButton.on('pointerdown', () => {
+            this.scene.input.setDefaultCursor('default');
+            this.scene.cameras.main.fadeOut(GameConfig.ANIMATIONS.FADE_DURATION, 0, 0, 0);
+            this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+                this.scene.scene.start('IntroScene');
+            });
         });
 
         // Continue button hover effects
@@ -240,6 +283,13 @@ class DialogueSystem {
             'califa': 'califa-portrait',
             'poeta': 'poeta-portrait',
             'sabio': 'sabio-portrait',
+            'vendedor': 'vendedor-portrait',
+            'oleiro': 'oleiro-portrait',
+            'raja': 'raja-portrait',
+            'inventor': 'inventor-portrait',
+            'vizir': 'vizir-portrait',
+            'princesa': 'princesa-portrait',
+            'pretendente': 'pretendente-portrait',
         };
 
         const normalizedName = characterName.toLowerCase();
@@ -258,12 +308,19 @@ class DialogueSystem {
     // Get fallback color for character
     getCharacterColor(characterName) {
         const colorMap = {
-            'beremiz': 0x228B22,    // Green
-            'hassan': 0x4169E1,     // Royal blue
-            'mercador': 0xFF8C00,   // Dark orange
-            'califa': 0x9932CC,     // Dark orchid
-            'poeta': 0xDC143C,      // Crimson
-            'sabio': 0x8B4513,      // Saddle brown
+            'beremiz': 0x228B22,      // Green
+            'hassan': 0x4169E1,       // Royal blue
+            'mercador': 0xFF8C00,     // Dark orange
+            'califa': 0x9932CC,       // Dark orchid
+            'poeta': 0xDC143C,        // Crimson
+            'sabio': 0x8B4513,        // Saddle brown
+            'vendedor': 0xB8860B,     // Dark goldenrod
+            'oleiro': 0xA0522D,       // Sienna
+            'raja': 0x4B0082,         // Indigo
+            'inventor': 0x2E8B57,     // Sea green
+            'vizir': 0x708090,        // Slate gray
+            'princesa': 0xC71585,     // Medium violet red
+            'pretendente': 0x1E90FF,  // Dodger blue
         };
         const normalizedName = characterName.toLowerCase();
         return colorMap[normalizedName] || GameConfig.COLORS.ACCENT;
@@ -285,11 +342,13 @@ class DialogueSystem {
         this.continueButtonText.setVisible(true);
         this.backButton.setVisible(true);
         this.backButtonText.setVisible(true);
+        this.exitButton.setVisible(true);
+        this.exitButtonText.setVisible(true);
 
         // Ensure button is enabled when showing UI
         this.enableButton();
 
-        const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText, this.backButton, this.backButtonText];
+        const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText, this.backButton, this.backButtonText, this.exitButton, this.exitButtonText];
         if (this.portrait) targets.push(this.portrait);
 
         this.scene.tweens.add({
@@ -305,7 +364,7 @@ class DialogueSystem {
         // Disable button when hiding UI
         this.disableButton();
 
-        const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText, this.backButton, this.backButtonText];
+        const targets = [this.dialogueBox, this.nameText, this.dialogueText, this.continueButton, this.continueButtonText, this.backButton, this.backButtonText, this.exitButton, this.exitButtonText];
         if (this.portrait) targets.push(this.portrait);
 
         this.scene.tweens.add({
@@ -322,6 +381,8 @@ class DialogueSystem {
                 this.continueButtonText.setVisible(false);
                 this.backButton.setVisible(false);
                 this.backButtonText.setVisible(false);
+                this.exitButton.setVisible(false);
+                this.exitButtonText.setVisible(false);
             }
         });
     }
@@ -480,5 +541,7 @@ class DialogueSystem {
         if (this.continueButtonText) this.continueButtonText.destroy();
         if (this.backButton) this.backButton.destroy();
         if (this.backButtonText) this.backButtonText.destroy();
+        if (this.exitButton) this.exitButton.destroy();
+        if (this.exitButtonText) this.exitButtonText.destroy();
     }
 }

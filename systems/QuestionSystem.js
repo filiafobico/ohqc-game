@@ -142,7 +142,7 @@ class QuestionSystem {
         this.updateButtonStates();
 
         // Delay before calling callback
-        this.scene.time.delayedCall(1000, () => {
+        this.scene.time.delayedCall(300, () => {
             if (this.onAnswer) {
                 this.onAnswer(index, index === this.correctIndex);
             }
@@ -179,16 +179,6 @@ class QuestionSystem {
 
             // Reset text scale
             this.optionTexts[index].setScale(1);
-        });
-
-        // Add visual feedback animation
-        this.scene.tweens.add({
-            targets: this.optionButtons[this.selectedIndex],
-            scaleX: { from: 1, to: 1.05 },
-            scaleY: { from: 1, to: 1.05 },
-            duration: 200,
-            yoyo: true,
-            ease: 'Power2'
         });
     }
 

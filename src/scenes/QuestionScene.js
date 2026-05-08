@@ -81,7 +81,7 @@ class QuestionScene extends Phaser.Scene {
 
         // Problem title
         this.problemTitle = this.add.text(width / 2, 70, this.currentLevel.title, {
-            fontSize: '24px',
+            fontSize: '22px',
             fill: GameConfig.COLORS.SECONDARY,
             fontFamily: 'Arial, serif',
             fontStyle: 'bold',
@@ -90,13 +90,63 @@ class QuestionScene extends Phaser.Scene {
         });
         this.problemTitle.setOrigin(0.5);
 
+        // Exit button (top-right)
+        const exitElements = this.addExitButton();
+
         // Animate UI elements
         this.tweens.add({
-            targets: [this.levelIndicator, this.problemTitle],
+            targets: [this.levelIndicator, this.problemTitle, ...exitElements],
             alpha: { from: 0, to: 1 },
             duration: GameConfig.ANIMATIONS.FADE_DURATION,
             ease: 'Power2'
         });
+    }
+
+    addExitButton() {
+        const { width } = this.sys.game.config;
+        const btnW = 54, btnH = 36, btnX = width - 20 - btnW, btnY = 20;
+
+        const btn = this.add.graphics();
+        btn.fillStyle(0x000000, 0.7);
+        btn.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.9);
+        btn.fillRoundedRect(btnX, btnY, btnW, btnH, 6);
+        btn.strokeRoundedRect(btnX, btnY, btnW, btnH, 6);
+        btn.setDepth(20).setAlpha(0);
+
+        const txt = this.add.text(btnX + btnW / 2, btnY + btnH / 2, '⏻', {
+            fontSize: '20px',
+            fill: '#d4af37',
+            fontFamily: 'Arial, sans-serif'
+        }).setOrigin(0.5).setDepth(20).setAlpha(0);
+
+        btn.setInteractive(
+            new Phaser.Geom.Rectangle(btnX, btnY, btnW, btnH),
+            Phaser.Geom.Rectangle.Contains
+        );
+        btn.on('pointerover', () => {
+            this.input.setDefaultCursor('pointer');
+            btn.clear();
+            btn.fillStyle(0x333333, 0.9);
+            btn.lineStyle(2, GameConfig.COLORS.SECONDARY, 1);
+            btn.fillRoundedRect(btnX, btnY, btnW, btnH, 6);
+            btn.strokeRoundedRect(btnX, btnY, btnW, btnH, 6);
+        });
+        btn.on('pointerout', () => {
+            this.input.setDefaultCursor('default');
+            btn.clear();
+            btn.fillStyle(0x000000, 0.7);
+            btn.lineStyle(2, GameConfig.COLORS.SECONDARY, 0.9);
+            btn.fillRoundedRect(btnX, btnY, btnW, btnH, 6);
+            btn.strokeRoundedRect(btnX, btnY, btnW, btnH, 6);
+        });
+        btn.on('pointerdown', () => {
+            this.input.setDefaultCursor('default');
+            this.cameras.main.fadeOut(GameConfig.ANIMATIONS.FADE_DURATION, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+                this.scene.start('IntroScene');
+            });
+        });
+        return [btn, txt];
     }
 
     // Setup question and animation systems
@@ -140,18 +190,12 @@ class QuestionScene extends Phaser.Scene {
 
     // Show success feedback
     showSuccessFeedback() {
-        // Play success animation
-        this.animationSystem.showSuccessAnimation(() => {
-            this.moveToResults();
-        });
+        this.moveToResults();
     }
 
     // Show failure feedback
     showFailureFeedback() {
-        // Play failure animation
-        this.animationSystem.showFailureAnimation(() => {
-            this.moveToResults();
-        });
+        this.moveToResults();
     }
 
     // Move to results scene
@@ -160,7 +204,7 @@ class QuestionScene extends Phaser.Scene {
         this.registry.set('questionResult', this.questionResult);
 
         // Delay before transition
-        this.time.delayedCall(1000, () => {
+        this.time.delayedCall(200, () => {
             // Fade out animation
             this.cameras.main.fadeOut(GameConfig.ANIMATIONS.FADE_DURATION, 0, 0, 0);
 
