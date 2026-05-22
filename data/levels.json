@@ -58,7 +58,7 @@
       "characters": ["Hassan", "Beremiz"],
       "story": [
         { "character": "Hassan", "text": "No deserto, dois viajantes nos convidaram para compartilhar sua comida.\nO primeiro tinha 3 pães e o segundo tinha 2. Dividimos os 5 pães igualmente entre os três." },
-        { "character": "Beremiz", "text": "Como agradecimento, paguei 5 moedas de ouro pelos pães que consumi.\nComo devem ser divididas essas moedas entre os dois viajantes?" }
+        { "character": "Beremiz", "text": "Como agradecimento, paguei 5 moedas de ouro pelos pães que consumimos.\nComo devem ser divididas essas moedas entre os dois viajantes?" }
       ],
       "question": "Beremiz pagou 5 moedas pelo que comeu. Como dividir entre o viajante com 3 pães e o com 2 pães?",
       "options": [
@@ -252,7 +252,7 @@
       ],
       "correctIndex": 2,
       "explanation": [
-        { "character": "Beremiz", "text": "Chamemos o número de n. Vamos acompanhar cada passo:\nn × 3 = 3n\n3n + 15\n(3n + 15) ÷ 3 = n + 5\nn + 5 − 5 = n" },
+        { "character": "Beremiz", "text": "Chamemos o número de n. Vamos acompanhar cada passo:\nn × 3 = 3n → 3n + 15\n(3n + 15) ÷ 3 = n + 5 → n + 5 − 5 = n" },
         { "character": "Hassan", "text": "O resultado é sempre o próprio n, qualquer que seja o número escolhido!" },
         { "character": "Princesa", "text": "Por isso, quando você me diz o resultado, eu já sei o número original. A álgebra é minha aliada!" },
         { "character": "Pretendente", "text": "Sua sabedoria é mais encantadora que qualquer magia, minha princesa." }
